@@ -1,19 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
-import CustomModal from '@/components/ui/CustomModal';
-import SummarizeSettings from '../ModalPopUp/summarizeSettings';
 
 const FileUploadSection = ({ file, handleDeleteFile, isLoading }) => {
-  const [SummarizeSetting, setSummarizeSetting] = useState(false);
-  const handleModal = () => {
-    setSummarizeSetting(true);
-  };
+  const router = useRouter();
+
   return (
     <>
-      <div className="p-10 flex align-middle items-center w-full flex-col justify-center">
-        <div className="p-5 flex md:w-[50%] w-[100%] align-middle justify-between bg-[#F3F5F6] border-2 border-[E8EAEC] rounded-[15px]">
+      <div className="p-10 flex align-middle items-center border-red-500 w-full flex-col justify-center">
+        <div className="p-5 flex md:w-[50%] w-[100%] align-middle justify-between bg-sirp-lightGrey border-2 border-sirp-dashbordb1 rounded-[15px]">
           <div className="flex align-middle items-center justify-center">
-            <span className="rounded-full bg-[#E8F8FD] flex align-middle justify-center w-[40px] h-[40px]">
+            <span className="rounded-full bg-sirp-primaryLess2 flex align-middle justify-center w-[40px] h-[40px]">
               <Image
                 src={require(`../../../../assets/icons/file.svg`)}
                 alt="upload image"
@@ -30,36 +27,31 @@ const FileUploadSection = ({ file, handleDeleteFile, isLoading }) => {
               </div>
             </div>
           </div>
-          <span className="rounded-full bg-[#FEE2E2] flex align-middle justify-center w-[40px] h-[40px]">
+          <span
+            className="rounded-full bg-[#FEE2E2] flex align-middle justify-center w-[40px] h-[40px]"
+            onClick={handleDeleteFile}
+          >
             <Image
               src={require(`../../../../assets/icons/red-delete.svg`)}
               alt="upload image"
               width={18}
               height={18}
               priority
-              onClick={handleDeleteFile}
             />
           </span>
         </div>
-        <div className="flex md:w-[50%] w-[100%] align-middle justify-end  mt-4">
-          {!isLoading && (
-            <div className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
-              <span className="ml-3" onClick={handleModal}>
-                Summarize
-              </span>
+        {!isLoading && (
+          <div
+            className="flex md:w-[50%] w-[100%] align-middle justify-end  mt-4"
+            onClick={() => router.push('/home/analyedcontent/analyedcontent')} //navigate to Analyezed_content page
+            style={{ cursor: 'pointer' }}
+          >
+            <div className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-sirp-primary text-white rounded-[15px] font-extrabold">
+              <span className="ml-3">Analyze</span>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
-      {SummarizeSetting && (
-        <CustomModal
-          style="bg-white md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
-          closeModal={() => setSummarizeSetting(false)}
-        >
-
-          < SummarizeSettings/>
-        </CustomModal>
-      )}
     </>
   );
 };

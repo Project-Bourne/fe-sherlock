@@ -24,7 +24,9 @@ const SettingsLayout = ({ children, showTitle, data }: any) => {
             <div className='w-[100%] flex flex-row items-center border-b overscroll-y-auto-'>
                 {
                     data?.map((item, index) => (
+                        <div className=' border-b-2 border-sirp-primary w-[20%]'>
                         <TabComp item={item} index={index} key={index} route={route} />
+                        </div>
                     ))
                 }
             </div>

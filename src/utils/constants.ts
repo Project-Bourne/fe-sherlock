@@ -121,13 +121,6 @@ export const HomeSubData = [
         id: 1,
         isActive: false,
     },
-    {
-        name: "Saved",
-        icon: "saved.svg",
-        selectedIcon: "on.saved.svg",
-        id: 2,
-        isActive: false,
-    },
 ]
 
 

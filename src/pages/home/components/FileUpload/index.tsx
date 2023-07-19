@@ -2,9 +2,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import FileUploadSection from './FileUploadSection';
 
-
 const FileUpload = () => {
-  const [formData, setFormData] = useState('');
+  const [formData, setFormData] = useState('first state');
   const [file, setFile] = useState(null);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,18 +21,21 @@ const FileUpload = () => {
 
   const handleFileUpload = e => {
     e.preventDefault();
-    const selectedFile = e.target.files[0];
+    const selectedFile = e.target.files[0]; // Get the first file from the array
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+    console.log(formData, 'formdata');
     setFile(selectedFile);
     if (selectedFile) {
       setIsFileUploaded(true);
     }
   };
-
+  
+  
 
   const handleDragOver = event => {
     event.preventDefault();
   };
-
 
   const handleDrop = event => {
     event.preventDefault();
@@ -100,7 +102,7 @@ const FileUpload = () => {
                 <input
                   id="file-upload"
                   type="file"
-                  accept=".txt,.rtf,.doc,.pdf,.svg,"
+                  accept=".txt,.rtf,.doc,.pdf,.jpeg,"
                   className="hidden"
                   onChange={handleFileUpload}
                 />
