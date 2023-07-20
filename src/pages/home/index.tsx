@@ -10,13 +10,10 @@ import Breadcrumb from '@/components/ui/Breadcrumbs';
 
 function Home() {
   const showTitle = false;
-  const router = useRouter()
-  console.log(router, 'i am router')
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
-    <div className='mt-[8rem] h-[100%] rounded-[1rem] bg-[#F9F9F9] mx-5'>
+    <div className='mt-[8rem] h-[100%] rounded-[1rem] bg-sirp-secondary2 mx-5'>
       <HomeLayout>
-        <h1 className='text-2xl pl-10 pt-5 font-bold'>Add Content</h1>
+        <h1 className='text-2xl pl-10 pt-5 mb-10 font-bold'>Add Content</h1>
         <Breadcrumb />
         <FileUpload />
       </HomeLayout>

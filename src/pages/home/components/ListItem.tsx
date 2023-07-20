@@ -11,7 +11,7 @@ function ListItem({
  
   return (
     <div
-      className="grid md:flex justify-between items-center text-[14px] hover:text-gray-400 hover:bg-sirp-primaryLess2 hover:rounded-none hover:shadow border-b-2 py-5"
+      className="grid md:flex justify-between items-center text-[14px] hover:text-gray-400 hover:bg-sirp-primaryLess2 hover:rounded-none hover:shadow border-b-2 py-5 pl-10"
     >
       <div className="flex gap-3 items-center hover:text-gray-400">
         <p className="text-sirp-black-500 ml-2 md:w-[12rem] hover:text-gray-400 text-[1rem]">
