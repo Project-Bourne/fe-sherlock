@@ -28,7 +28,7 @@ const FileUploadSection = ({ file, handleDeleteFile, isLoading }) => {
             </div>
           </div>
           <span
-            className="rounded-full bg-[#FEE2E2] flex align-middle justify-center w-[40px] h-[40px]"
+            className="rounded-full bg-[#FEE2E2] flex align-middle justify-center w-[70px] h-[40px]"
             onClick={handleDeleteFile}
           >
             <Image
