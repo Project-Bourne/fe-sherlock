@@ -34,11 +34,10 @@ function homecontent() {
         {/* run analyze buuton */}
         <div
           className="flex md:w-[15%] w-[50%] h-[3.5rem] rounded-[1rem] justify-center items-center bg-sirp-primary"
-          onClick={() => router.push('/home/content/crawled')} //navigate to Analyezed_content page
+          onClick={() => router.push('/home/content_id/crawled')} //navigate to Analyezed_content page
           style={{ cursor: 'pointer' }}
         >
-          <span className="text-white">Run Analyzer</span> 
-  
+          <span className="text-white">Run Analyzer</span>
         </div>
       </div>
       {/* breadcrum section  */}
@@ -47,7 +46,7 @@ function homecontent() {
 
       {/* min and max */}
       <div className="bg-white border my-[3rem] mx-10 rounded-[1rem]">
-        <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} /> 
+        <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />
         {hideMeta == true && (
           <div className="pl-5 pb-5 mt-[5rem]">
             <p className="text-md text-gray-500">Title</p>
@@ -57,11 +56,10 @@ function homecontent() {
           </div>
         )}
         {hideMeta == false && ( //hide and show meta data
-               <h1 className="md:text-lg font-bold pl-5 pb-2">
-               Specific Conditions or Instruction
-             </h1>
+          <h1 className="md:text-lg font-bold pl-5 pb-2">
+            Specific Conditions or Instruction
+          </h1>
         )}
-
       </div>
       <div className="my-10 mx-5">
         <DummyText />

@@ -6,7 +6,6 @@ import FileUpload from './components/FileUpload';
 import Breadcrumb from '@/components/ui/Breadcrumbs';
 
 function Home() {
-  const showTitle = false;
   return (
     <div className="mt-[8rem] h-[100%] rounded-[1rem] bg-sirp-secondary2 mx-5">
       <HomeLayout>
