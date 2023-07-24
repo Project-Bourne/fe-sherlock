@@ -1,18 +1,17 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import Link from 'next/link'
 
 type TabCompType = {
     item: {
         name: string,
-        icon?: string,
+        icon: string,
         id: number,
-        route?: string,
+        route: string,
         selectedIcon: string
     },
     index: number,
-    route: string
+    route: string,
 }
 
 const TabComp = ({item, index, route}: TabCompType) => {
@@ -43,8 +42,8 @@ const TabComp = ({item, index, route}: TabCompType) => {
   return (    
     <div 
       className={
-        item.route == router.pathname ? 'md:px-8 px-0  pt-3 flex md:flex-row flex-wrap items-center border-b-2 border-sirp-primary pb-3 md:mr-10 mr-0 mb-[-2px] cursor-pointer'
-        : 'md:px-8 px-1 pt-3 flex md:flex-row flex-wrap items-center border-b pb-3 md:mr-15 mr-0 mb-[-2px] cursor-pointer text-sirp-grey'
+        item.route == router.pathname ? 'md:px-8 px-3 pt-3 flex flex-row items-center border-b-2 border-sirp-primary pb-2 md:pb-3 mb-[-2px] cursor-pointer'
+        : 'md:px-8 px-3  pt-3 flex items-center pb-3 mb-[-2px] cursor-pointer text-sirp-grey'
       }
       onClick={updatePath}
     >
