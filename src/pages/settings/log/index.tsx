@@ -15,6 +15,7 @@ const LogSettings = () => {
                actionText={item.action}
                activityText={'Redesigned Naira: CBN launches Cash Swap Programme for rural '}
                docId={item.id}
+               key={item.id}
              />
           ))
         }
