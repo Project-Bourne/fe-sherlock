@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function BreadCrum() {
   return (
@@ -7,6 +7,6 @@ function BreadCrum() {
       <p className="text-slate-600">Content ID</p>
     </div>
   );
-};
+}
 
 export default BreadCrum;

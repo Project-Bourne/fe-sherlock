@@ -39,9 +39,9 @@ function summarizeSettings() {
           </select>
 
           <Link href="../../../home/homecontent/homecontent">
-          <button className="p-4 cursor-pointer flex w-[100%] align-middle justify-center bg-sirp-primary  text-white rounded-[1rem] text-[15px]">
-            Summarize content
-          </button>
+            <button className="p-4 cursor-pointer flex w-[100%] align-middle justify-center bg-sirp-primary  text-white rounded-[1rem] text-[15px]">
+              Summarize content
+            </button>
           </Link>
         </form>
       </div>

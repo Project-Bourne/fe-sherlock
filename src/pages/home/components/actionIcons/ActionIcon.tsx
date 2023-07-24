@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState } from 'react';
+import Image from 'next/image';
 // import CustomModal from "@/components/ui/CustomModal";
 // import Factcheck from "../ModalPopUp/factcheck";
 // import Collaborate from "../ModalPopUp/collaborate";
@@ -13,39 +13,39 @@ const ActionIcons = () => {
     <>
       <div className="flex gap-1 mr-2 px-5">
         <Image
-          src={require("../../../../assets/icons/H3.svg")}
+          src={require('../../../../assets/icons/H3.svg')}
           alt="documents"
           className=" cursor-pointer"
           width={50}
           onClick={() => setDocuments(true)}
         />
         <Image
-          src={require("../../../../assets/icons/H2.svg")}
+          src={require('../../../../assets/icons/H2.svg')}
           alt="documents"
           className=" cursor-pointer"
           width={50}
         />
         <Image
-          src={require("../../../../assets/icons/H1.svg")}
+          src={require('../../../../assets/icons/H1.svg')}
           alt="documents"
           className=" cursor-pointer"
           width={50}
         />
         <Image
-          src={require("../../../../assets/icons/on.saved.svg")}
+          src={require('../../../../assets/icons/on.saved.svg')}
           alt="documents"
           className="cursor-pointer"
           width={50}
         />
         <Image
-          src={require("../../../../assets/icons/H4.svg")}
+          src={require('../../../../assets/icons/H4.svg')}
           alt="documents"
           className="cursor-pointer"
           width={50}
           onClick={() => setCollaborate(true)}
         />
         <Image
-          src={require("../../../../assets/icons/H6.svg")}
+          src={require('../../../../assets/icons/H6.svg')}
           alt="documents"
           className="cursor-pointer"
           width={50}

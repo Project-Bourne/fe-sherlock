@@ -1,5 +1,5 @@
-import SettingsLayout from '@/layout/SettingsLayout'
-import React from 'react'
+import SettingsLayout from '@/layout/SettingsLayout';
+import React from 'react';
 import { SettingsData } from '@/utils/constants';
 
 const PersonalizationSettings = () => {
@@ -7,7 +7,7 @@ const PersonalizationSettings = () => {
     <SettingsLayout data={SettingsData}>
       <div>PersonalizationSettings</div>
     </SettingsLayout>
-  )
-}
+  );
+};
 
 export default PersonalizationSettings;

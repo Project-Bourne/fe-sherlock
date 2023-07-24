@@ -2,7 +2,6 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import FileUploadSection from './FileUploadSection';
 
-
 const FileUpload = () => {
   const [formData, setFormData] = useState('');
   const [file, setFile] = useState(null);
@@ -29,11 +28,9 @@ const FileUpload = () => {
     }
   };
 
-
   const handleDragOver = event => {
     event.preventDefault();
   };
-
 
   const handleDrop = event => {
     event.preventDefault();

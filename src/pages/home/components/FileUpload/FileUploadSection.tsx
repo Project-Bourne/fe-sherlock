@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import CustomModal from '@/components/ui/CustomModal';
 import SummarizeSettings from '../ModalPopUp/summarizeSettings';
@@ -56,8 +56,7 @@ const FileUploadSection = ({ file, handleDeleteFile, isLoading }) => {
           style="bg-white md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
           closeModal={() => setSummarizeSetting(false)}
         >
-
-          < SummarizeSettings/>
+          <SummarizeSettings />
         </CustomModal>
       )}
     </>
