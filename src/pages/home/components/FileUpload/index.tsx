@@ -1,17 +1,24 @@
-import Image from 'next/image';
-import React, { useState } from 'react';
-import FileUploadSection from './FileUploadSection';
+import Image from "next/image";
+import React, { useState } from "react";
+import FileUploadSection from "./FileUploadSection";
 
 const FileUpload = () => {
-  const [formData, setFormData] = useState('');
+  const [formData, setFormData] = useState("");
   const [file, setFile] = useState(null);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showReader, setShowReader] = useState(false);
 
-  const handleChange = e => {
-    e.preventDefault();
-    setFormData(e.target.value);
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setFormData(value);
+    console.log("Form Data:", value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent the form from submitting via default behavior
+    setFormData("");
+    console.log("Form submitted:", formData); // Do whatever you want with the form data here
   };
 
   const handleDeleteFile = () => {
@@ -19,26 +26,33 @@ const FileUpload = () => {
     setIsFileUploaded(false);
   };
 
-  const handleFileUpload = e => {
+  const handleFileUpload = (e) => {
     e.preventDefault();
-    const selectedFile = e.target.files[0];
+    const selectedFile = e.target.files[0]; // Get the first file from the array
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    console.log(formData, "formdata");
     setFile(selectedFile);
     if (selectedFile) {
       setIsFileUploaded(true);
     }
   };
 
-  const handleDragOver = event => {
+  const handleDragOver = (event) => {
     event.preventDefault();
   };
 
-  const handleDrop = event => {
+  const handleDrop = (event) => {
     event.preventDefault();
     const droppedFile = event.dataTransfer.files[0];
     setFile(droppedFile);
     if (droppedFile) {
       setIsFileUploaded(true);
     }
+  };
+
+  const handleClearInput = () => {
+    setFormData("");
   };
 
   return (
@@ -51,31 +65,35 @@ const FileUpload = () => {
         />
       ) : (
         <>
-          <div className="flex align-middle w-full border-2 rounded-full border-[#E5E7EB]-500  border-dotted">
-            <span className="flex align-middle justify-center mx-3">
-              <Image
-                src={require(`../../../../assets/icons/link.svg`)}
-                alt="upload image"
-                width={20}
-                height={20}
-                priority
+          <form onSubmit={handleSubmit}>
+            <div className="flex align-middle w-full border-2 rounded-full border-[#E5E7EB]-500  border-dotted">
+              <span className="flex align-middle justify-center mx-3">
+                <Image
+                  src={require(`../../../../assets/icons/link.svg`)}
+                  alt="upload image"
+                  width={20}
+                  height={20}
+                  priority
+                />
+              </span>
+              <input
+                placeholder="Copy and paste link here"
+                className="py-5 w-[95%] bg-sirp-secondary2 outline-none focus:ring-0"
+                value={formData}
+                onChange={handleChange}
               />
-            </span>
-            <input
-              placeholder="Copy and paste link here"
-              className="py-5 w-[95%] bg-[#F9F9F9] outline-none focus:ring-0"
-              onChange={handleChange}
-            />
-            <span className="flex align-middle justify-center mx-3">
-              <Image
-                className="flex align-middle justify-center font-light text-[#A1ADB5]"
-                src={require(`../../../../assets/icons/x.svg`)}
-                alt="upload image"
-                width={20}
-                height={20}
-              />
-            </span>
-          </div>
+              <span className="flex align-middle justify-center mx-3">
+                <Image
+                  className="flex align-middle justify-center font-light text-[#A1ADB5] cursor-pointer"
+                  src={require(`../../../../assets/icons/x.svg`)}
+                  alt="upload image"
+                  width={20}
+                  height={20}
+                  onClick={handleClearInput}
+                />
+              </span>
+            </div>
+          </form>
 
           <div
             onDragOver={handleDragOver}
@@ -97,7 +115,7 @@ const FileUpload = () => {
                 <input
                   id="file-upload"
                   type="file"
-                  accept=".txt,.rtf,.doc,.pdf,.svg,"
+                  accept=".txt,.rtf,.doc,.pdf,.jpeg,"
                   className="hidden"
                   onChange={handleFileUpload}
                 />
@@ -106,7 +124,7 @@ const FileUpload = () => {
                   htmlFor="file-upload"
                 >
                   Upload a file
-                </label>{' '}
+                </label>{" "}
                 or drag and drop
               </span>
               <span className="font-light  text-[#383E42]">

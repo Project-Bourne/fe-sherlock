@@ -1,22 +1,16 @@
-# SHERLOCK
+# DEEP SOUL - Sherlock
 
 ## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+To make it easy for you to get started with GitHub, here's a list of recommended next steps.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## How to render on DEV MODE
 
-## Add your files
+- npm run dev.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Build Project for PRODUCTION
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/borne2/roselta.git
-git branch -M main
-git push -uf origin main
-```
+- npm run build.
 
 ## Integrate with your tools
 
@@ -93,6 +87,15 @@ You can also document commands to lint the code or run tests. These steps help t
 ## Authors and acknowledgment
 
 Show your appreciation to those who have contributed to the project.
+
+-legacy.rexio@gmail.com
+https://github.com/legacy-rex0
+
+-https://github.com/okafohenry
+
+-https://github.com/Cabraham1
+
+-https://github.com/code-sensei
 
 ## License
 
