@@ -25,7 +25,7 @@ function homecontent() {
             alt="documents"
             className="cursor-pointer pb-5"
             width={20}
-            onClick={() => router.push("/home")} //navigate to Analyezed_content page
+            onClick={() => router.back()} //navigate to Analyezed_content page
           />
 
           {/* the name goes here  */}
