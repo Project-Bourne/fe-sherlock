@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-function dummyText() {
+function DummyText() {
   return (
     <div className="text-justify pr-10">
       <p className="text-md text-gray-500 py-5">Content</p>
@@ -45,4 +45,4 @@ function dummyText() {
   );
 }
 
-export default dummyText;
+export default DummyText;

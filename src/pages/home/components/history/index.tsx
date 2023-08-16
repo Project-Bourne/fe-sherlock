@@ -24,7 +24,7 @@ function HomeHistory() {
       {/* the history tab */}
       <div className="flex pl-[2.5rem] gap-2 border-b-2 border-sirp-primary w-[15rem] py-5">
         <Image
-          src={require("../../../../assets/icons/Histroy.svg")}
+          src={require("../../../../assets/icons/histroy.svg")}
           alt="documents"
           className="cursor-pointer"
           width={20}

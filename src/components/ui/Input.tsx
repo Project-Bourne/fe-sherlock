@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import React, { useRef, useState } from 'react';
-import { InputModel, DropdownModel } from '@/models/ui/components.models';
-import { useOnClickOutside } from '../custom-hooks';
+import Image from "next/image";
+import React, { useRef, useState } from "react";
+import { InputModel, DropdownModel } from "@/models/ui/components.models";
+import { useOnClickOutside } from "../custom-hooks";
 
-const countries = require('../../utils/countries.json');
-const languages = require('../../utils/languages.json');
+const countries = require("../../utils/countries.json");
+const languages = require("../../utils/languages.json");
 
 function Input(props: InputModel) {
   const { type, value, onChange, placeholder, classNameStyle, isDisabled } =
@@ -12,18 +12,18 @@ function Input(props: InputModel) {
   const [toggle, setToggle] = useState(false);
 
   const handleToggle = () => {
-    setToggle(prevState => !prevState);
+    setToggle((prevState) => !prevState);
   };
 
   return (
     <>
-      {type === 'password' ? ( // add toggle button, if input type is password
+      {type === "password" ? ( // add toggle button, if input type is password
         <div className="flex w-full">
           <input
             className={`w-[90%] py-2 px-3 font-light rounded-l border-y-2 border-l-2 border-r-0 border-y-gray-100 border-l-gray-100 focus:border-gray-100 outline-none ${classNameStyle}`}
             value={value}
             placeholder={placeholder}
-            type={toggle ? 'text' : 'password'}
+            type={toggle ? "text" : "password"}
             readOnly={isDisabled}
             onChange={onChange}
           />
@@ -33,7 +33,7 @@ function Input(props: InputModel) {
           >
             {!toggle ? (
               <Image
-                src={require('../../assets/icons/Hide.svg')}
+                src={require("../../assets/icons/hide.svg")}
                 alt="Filter"
                 width={20}
                 height={20}
@@ -84,17 +84,17 @@ function DropdownWithFlag(props: DropdownModel) {
   const { onClick, selectItem, className, style, isDisabled } = props;
   const [dropdown, setDropdown] = useState(false);
   const [country, setCountry] = useState({
-    name: 'Nigeria',
-    flag: 'https://flagcdn.com/ng.svg'
+    name: "Nigeria",
+    flag: "https://flagcdn.com/ng.svg",
   });
   const [filteredCountries, setFilteredCountries] = useState(countries);
-  const [countrySearch, setCountrySearch] = useState('');
+  const [countrySearch, setCountrySearch] = useState("");
   const searchInput = useRef();
 
   const dropdownRef = useRef();
   useOnClickOutside(dropdownRef, () => {
     setDropdown(false);
-    setCountrySearch('');
+    setCountrySearch("");
   });
 
   // toggle dropdown if component is not disabled
@@ -112,14 +112,14 @@ function DropdownWithFlag(props: DropdownModel) {
     setDropdown(false);
     selectItem(country);
     setFilteredCountries(countries);
-    setCountrySearch('');
+    setCountrySearch("");
   };
 
-  const filterCountries = event => {
+  const filterCountries = (event) => {
     // event.preventDefault();
     // setCountrySearch(event.target.value);
-    console.log('Filtering', event.target.value);
-    let filteredCountries = countries.filter(country => {
+    console.log("Filtering", event.target.value);
+    let filteredCountries = countries.filter((country) => {
       if (
         country.name
           .toLowerCase()
@@ -139,7 +139,7 @@ function DropdownWithFlag(props: DropdownModel) {
     const menuRef = useRef();
     useOnClickOutside(menuRef, () => {
       setDropdown(false);
-      setCountrySearch('');
+      setCountrySearch("");
     });
 
     return (
@@ -220,7 +220,7 @@ function DropdownWithFlag(props: DropdownModel) {
               setCountrySearch(event.target.value);
               filterCountries(event);
             }}
-            key={'search-input'}
+            key={"search-input"}
             // ref={searchInput}
             value={countrySearch}
           />
@@ -236,14 +236,14 @@ function LanguagesDropdown(props: DropdownModel) {
   const { onClick, selectItem, className, style, isDisabled } = props;
   const [dropdown, setDropdown] = useState(false);
   const [country, setCountry] = useState({
-    name: 'English'
+    name: "English",
   });
   // toggle dropdown if component is not disabled
   const handleDropdown = () => {
     setDropdown(!dropdown);
   };
   // add a selected country from dropdown
-  const handleItemSelect = country => {
+  const handleItemSelect = (country) => {
     setCountry({ name: country });
     setDropdown(false);
     selectItem(country);
@@ -275,7 +275,7 @@ function LanguagesDropdown(props: DropdownModel) {
 
   return (
     <div
-      className={`relative flex cursor-pointer flex-row flex-wrap items-center border-b-2 border-sirp-primary mb-[-2px] cursor-pointer ${style}`}
+      className={`relative flex flex-row flex-wrap items-center border-b-2 border-sirp-primary mb-[-2px] cursor-pointer ${style}`}
     >
       <div
         className={`flex justify-between items-center my-2 w-[150px] px-1 rounded-md border-gray-100 hover:cursor-pointer`}

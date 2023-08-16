@@ -1,7 +1,6 @@
-import Image from 'next/image';
-import React from 'react';
-import RightComp from './RightComp';
-import LeftComp from './LeftComp';
+import React from "react";
+import RightComp from "./RightComp";
+import LeftComp from "./LeftComp";
 
 function Header() {
   return (
@@ -19,8 +18,8 @@ function Header() {
   );
 }
 
-const styles = {
-  rowView: 'flex flex-row'
-};
+// const styles = {
+//   rowView: 'flex flex-row'
+// };
 
 export default Header;

@@ -1,6 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
-function summarizeSettings() {
+import React from "react";
+import Link from "next/link";
+
+function SummarizeSettings() {
   return (
     <div>
       <div className="my-5">
@@ -49,4 +50,4 @@ function summarizeSettings() {
   );
 }
 
-export default summarizeSettings;
+export default SummarizeSettings;

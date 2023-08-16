@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import ActionIcons from "../components/actionIcons/ActionIcon";
 import { Breadcrumbs } from "@/components/ui";
-import Min_and_Max_icon from "../components/Min_Max_icon";
+import ActionIcons from "../components/actionIcons/ActionIcon";
+import MinAndMaxIcon from "../components/Min_Max_icon";
 import MetaData from "../components/MetaData";
 import DummyText from "../components/dummyText";
 
-function crawled() {
+function Crawled() {
   const router = useRouter();
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
   const handleMax = () => {
@@ -36,9 +36,9 @@ function crawled() {
         <ActionIcons />
         <Breadcrumbs />
         <div className="bg-white border my-[3rem] mx-5 rounded-[1rem] w-[100%]">
-          <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />
-          {hideMeta == true && <MetaData />}
-          {hideMeta == false && ( //hide and show meta data
+          <MinAndMaxIcon maxOnClick={handleMax} minOnClick={handleMin} />
+          {hideMeta === true && <MetaData />}
+          {hideMeta === false && ( // hide and show meta data
             <h1 className="md:text-lg font-bold pl-5 pb-2">
               22 Insightful quotes from our speakers (link to recording at the
               end){" "}
@@ -54,4 +54,4 @@ function crawled() {
   );
 }
 
-export default crawled;
+export default Crawled;

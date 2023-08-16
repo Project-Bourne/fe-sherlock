@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "react-loading-skeleton/dist/skeleton.css";
-import data from "./data";
+import data from "../../../utils/data";
 import TitleSection from "./section_skeleton/TitleSection";
 import AuthorSection from "./section_skeleton/AuthorSection";
 import ConfidenceSection from "./section_skeleton/ConfidenceSection";

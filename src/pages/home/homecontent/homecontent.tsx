@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import ActionIcons from '../components/actionIcons/ActionIcon';
-import Image from 'next/image';
-import BreadCrum from '../components/BreadCrum';
-import Min_and_Max_icon from '../components/Min_Max_icon';
-import DummyText from '../components/dummyText';
-import Link from 'next/link';
+import React, { useState } from "react";
+import ActionIcons from "../components/actionIcons/ActionIcon";
+import Image from "next/image";
+import BreadCrum from "../components/BreadCrum";
+import Min_and_Max_icon from "../components/Min_Max_icon";
+import DummyText from "../components/dummyText";
+import Link from "next/link";
 
-function homecontent() {
+function Homecontent() {
   const [hideMeta, setHideMeta] = useState(true);
   const handleMax = () => {
     setHideMeta(true);
@@ -20,7 +20,7 @@ function homecontent() {
         <div className="">
           <Link href="../">
             <Image
-              src={require('../../../assets/icons/arrow-narrow-left 1.svg')}
+              src={require("../../../assets/icons/arrow-narrow-left 1.svg")}
               alt="documents"
               className="cursor-pointer pb-5"
               width={20}
@@ -37,7 +37,7 @@ function homecontent() {
       {/* min and max */}
       <div className="bg-white border my-10 mx-10 rounded-[1rem]">
         <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />
-        {hideMeta == true && (
+        {hideMeta === true && (
           <div className="pl-5 my-5">
             <p className="text-md text-gray-500">Title</p>
             <h1 className="md:text-3xl text-[14px]">
@@ -53,4 +53,4 @@ function homecontent() {
   );
 }
 
-export default homecontent;
+export default Homecontent;

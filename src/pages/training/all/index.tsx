@@ -1,10 +1,10 @@
-import TrainingLayout from '@/layout/TrainingLayout';
-import { FAQS, LogData, QuickSearch } from '@/utils/constants';
-import React from 'react';
-import { SearchComp, FAQComp } from '../components';
-import Image from 'next/image';
+import TrainingLayout from "@/layout/TrainingLayout";
+import { FAQS, QuickSearch } from "@/utils/constants";
+import React from "react";
+import Image from "next/image";
+import { SearchComp, FAQComp } from "../components";
 
-const AllTraining = () => {
+function AllTraining() {
   return (
     <TrainingLayout>
       <div className="w-full h-full overflow-y-scroll py-5 px-8">
@@ -40,12 +40,12 @@ const AllTraining = () => {
 
             <div className="w-full flex flex-row justify-center items-center my-8">
               <Image
-                src={require('../../../assets/svg/image-checker.svg')}
+                src={require("../../../assets/svg/image-checker.svg")}
                 alt="search"
                 // width={200}
                 // height={}
                 className="w-[60%] h-[60%] self-center"
-                style={{ alignSelf: 'center' }}
+                style={{ alignSelf: "center" }}
                 priority
               />
             </div>
@@ -62,8 +62,6 @@ const AllTraining = () => {
               registered address at 651 N Broad St, New Castle, Delaware United
               States. (“Company”).
             </p>
-
-            <p></p>
           </div>
 
           {/* FAQ */}
@@ -82,6 +80,6 @@ const AllTraining = () => {
       </div>
     </TrainingLayout>
   );
-};
+}
 
 export default AllTraining;

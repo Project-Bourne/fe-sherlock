@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import { useTruncate } from '@/components/custom-hooks';
-import { ActivityCardModel } from '@/global/users.module';
+import Link from "next/link";
+import { useTruncate } from "@/components/custom-hooks";
+import { ActivityCardModel } from "@/global/users.module";
 
-export function ActivityCard({
+export default function ActivityCard({
   time,
   actionText,
   activityText,
-  docId
+  docId,
 }: ActivityCardModel) {
   return (
     <div className="w-[90%] mt-[2rem] grid md:flex gap-x-2 mx-auto">

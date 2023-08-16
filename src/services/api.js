@@ -4,12 +4,12 @@
  * Object Request Header
  */
 export const requestHeader = {
-  Accept: 'application/json',
-  'Cache-Control': 'no-cache',
-  'Content-Type': 'application/json',
-  'x-token': ''
+  Accept: "application/json",
+  "Cache-Control": "no-cache",
+  "Content-Type": "application/json",
+  "x-token": "",
 };
-
+const API_USER_URL = "";
 /**
  *
  * @param {string} url
@@ -21,15 +21,15 @@ export const requestHeader = {
  * @returns Response Data;
  */
 export async function request(url, method, payload, token, text, form) {
-  requestHeader['Content-Type'] =
-    form === true ? 'multipart/form-data' : 'application/json';
+  requestHeader["Content-Type"] =
+    form === true ? "multipart/form-data" : "application/json";
 
-  if (method === 'GET') {
+  if (method === "GET") {
     return fetch(API_USER_URL + url, {
       method,
-      headers: Object.assign(requestHeader)
+      headers: Object.assign(requestHeader),
     })
-      .then(res => {
+      .then((res) => {
         if (text === true) {
           return res.text();
         } else if (res) {
@@ -38,7 +38,7 @@ export async function request(url, method, payload, token, text, form) {
           return res.json();
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(`Request Error ${url}: `, err);
         throw new Error(err);
         // return err;
@@ -47,9 +47,9 @@ export async function request(url, method, payload, token, text, form) {
     return fetch(API_USER_URL + url, {
       method,
       headers: Object.assign(requestHeader),
-      body: form === true ? payload : JSON.stringify(payload)
+      body: form === true ? payload : JSON.stringify(payload),
     })
-      .then(res => {
+      .then((res) => {
         if (text === true) {
           return res.text();
         } else if (res) {
@@ -58,7 +58,7 @@ export async function request(url, method, payload, token, text, form) {
           return res.json();
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(`Request Error ${url}: `, err);
         throw new Error(err);
       });

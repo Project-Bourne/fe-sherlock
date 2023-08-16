@@ -29,7 +29,7 @@ function Content({ data, onCheck }) {
         // Render "No data" message if data is empty or not available
         <div className="flex flex-col items-center my-10 pb-10">
           <Image
-            src={require("../../../assets/icons/Time.svg")}
+            src={require("../../../assets/icons/time.svg")}
             alt="documents"
             className="cursor-pointer pb-5"
             width={100}

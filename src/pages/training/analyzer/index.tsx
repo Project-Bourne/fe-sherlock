@@ -1,14 +1,12 @@
-import TrainingLayout from '@/layout/TrainingLayout';
-import { ActivityCard } from '@/pages/users/components/ActivityCard';
-import { LogData } from '@/utils/constants';
-import React from 'react';
+import React from "react";
+import TrainingLayout from "@/layout/TrainingLayout";
 
-const AnalyzerTraining = () => {
+function AnalyzerTraining() {
   return (
     <TrainingLayout>
-      <div className="w-full h-full overflow-y-scroll"></div>
+      <div className="w-full h-full overflow-y-scroll">analyzed</div>
     </TrainingLayout>
   );
-};
+}
 
 export default AnalyzerTraining;
