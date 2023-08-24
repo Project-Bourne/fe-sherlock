@@ -7,7 +7,7 @@ export const requestHeader = {
   Accept: 'application/json',
   'Cache-Control': 'no-cache',
   'Content-Type': 'application/json',
-  'x-token': ''
+  "deep-token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNjA0OTUzLTk0YzAtNGYzOC05N2I3LWFlYWEyYWI5YjRjMCIsInJvbGUiOiIxIiwiaWF0IjoxNjkyNzk1NDkxLCJleHAiOjE2OTI4ODE4OTF9.Ny9KHUbLWoXd7Y2O2JKVPS0wnrd3xWWoiRvkzk0uMkU'
 };
 
 /**
@@ -19,7 +19,10 @@ export const requestHeader = {
  * @param {boolean} text
  * @param {boolean} form
  * @returns Response Data;
+ * 
  */
+
+let API_USER_URL = 'http://192.81.213.226:81/'
 export async function request(url, method, payload, token, text, form) {
   requestHeader['Content-Type'] =
     form === true ? 'multipart/form-data' : 'application/json';

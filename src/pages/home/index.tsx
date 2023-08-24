@@ -1,7 +1,7 @@
 // home page
 import HomeLayout from "@/layout/HomeLayout";
 import { HomeSubData } from "@/utils/constants";
-import HomeHistory from "./components/history";
+import HomeHistory from "./components/history/History";
 import SettingsLayout from "@/layout/SettingsLayout";
 import { useRouter } from "next/router";
 import FileUpload from "./components/FileUpload";
