@@ -1,10 +1,19 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import FileUploadSection from "./FileUploadSection";
+import { useDispatch, useSelector } from 'react-redux';
+import AnalyzerService from "@/services/Analyzer.service"
+import { useRouter } from 'next/router';
+import NotificationService from '@/services/notification.service';
+import { setTextAnalysis } from '@/redux/reducer/analyzerSlice';
+import LoadingModal from './loadingModal';
 
 const FileUpload = () => {
   const [formData, setFormData] = useState("");
+  const router = useRouter()
+  const dispatch = useDispatch()
   const [file, setFile] = useState(null);
+  const [showLoader, setShowLoader] = useState(false)
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showReader, setShowReader] = useState(false);
@@ -12,8 +21,39 @@ const FileUpload = () => {
   const handleChange = (e) => {
     const value = e.target.value;
     setFormData(value);
-    console.log("Form Data:", value);
+
   };
+
+  const handleKeyDown = async (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        console.log('Enter key pressed:', formData);
+        let data = {
+            text: formData,
+        };
+        setShowLoader(true);
+        try {
+            const request = await AnalyzerService.analyze(data);
+            console.log(request)
+            if (request.status) {
+                dispatch(setTextAnalysis(request.data))
+                    setShowLoader(false);
+                    router.push('/home/analyzed');
+            } else {
+                setShowLoader(false);
+                router.push('/home');
+                NotificationService.error({
+                    message: "Error!",
+                    addedText: <p>{request.message}. please try again</p>,
+                });
+            }
+        } catch (error) {
+            setShowLoader(false);
+            console.log(error);
+        }
+    }
+
+};
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent the form from submitting via default behavior
@@ -55,8 +95,13 @@ const FileUpload = () => {
     setFormData("");
   };
 
+  const closeModal = () => {
+    setShowLoader(false)
+}
+
   return (
     <div className="m-5">
+       {showLoader && <LoadingModal closeModal={closeModal} formData={formData} />}
       {isFileUploaded && !showReader ? (
         <FileUploadSection
           file={file}
@@ -81,6 +126,7 @@ const FileUpload = () => {
                 className="py-5 w-[95%] bg-sirp-secondary2 outline-none focus:ring-0"
                 value={formData}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
               />
               <span className="flex align-middle justify-center mx-3">
                 <Image

@@ -47,7 +47,7 @@ const FileUploadSection = ({ file, handleDeleteFile, isLoading }) => {
         {!isLoading && (
           <div
             className="flex md:w-[50%] w-[100%] align-middle justify-end  mt-4"
-            onClick={() => router.push("/home/analyedcontent/analyedcontent")} //navigate to Analyezed_content page
+            onClick={() => router.push("/home/analyzed")} //navigate to Analyezed_content page
             style={{ cursor: "pointer" }}
           >
             <div className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-sirp-primary text-white rounded-[15px] font-extrabold">
