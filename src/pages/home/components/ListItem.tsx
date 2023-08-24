@@ -1,10 +1,19 @@
 import React from "react";
 import { useTruncate } from "@/components/custom-hooks";
 import { ListItemModels } from "../model/home.model";
+import { useRouter } from "next/router";
 
-function ListItem({ name, desc, message, time }: ListItemModels) {
+function ListItem({ name, desc, message, time, id }: ListItemModels) {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/home/analyedcontent/${id}`);
+  };
+
   return (
-    <div className="grid md:flex justify-between items-center text-[14px] hover:text-gray-400 hover:bg-sirp-primaryLess2 hover:rounded-none hover:shadow border-b-2 py-5 pl-10 cursor-pointer hover:translate-x-2">
+    <div
+      className="grid md:flex justify-between items-center text-[14px] hover:text-gray-400 hover:bg-sirp-primaryLess2 hover:rounded-none hover:shadow border-b-2 py-5 pl-10 cursor-pointer hover:translate-x-2"
+      onClick={handleClick}
+    >
       <div className="flex gap-3 items-center hover:text-gray-400">
         <p className="text-sirp-black-500 ml-2 md:w-[12rem] hover:text-gray-400 text-[1rem]">
           {name}

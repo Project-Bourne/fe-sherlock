@@ -20,13 +20,13 @@ function crawled() {
   return (
     <div className="bg-sirp-secondary2 h-[100%] mx-5 rounded-[1rem]">
       <div className="flex md:justify-between  flex-wrap md:px-5 md:py-5 ">
-        <div className="">
+        <div>
           <Image
             src={require("../../../assets/icons/arrow-narrow-left 1.svg")} // return back to home page
             alt="documents"
             className="cursor-pointer pb-5"
             width={20}
-            onClick={() => router.push("/home/analyedcontent/analyedcontent")} //navigate to Analyezed_content page
+            onClick={() => router.back()}
           />
 
           {/* the name goes here  */}

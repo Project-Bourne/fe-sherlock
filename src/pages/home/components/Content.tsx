@@ -1,21 +1,18 @@
 import React from "react";
 import ListItem from "./ListItem";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 function Content({ data, onCheck }) {
-  const handleClick = (id) => {
-    onCheck(id); // Notify parent component about the checkbox change
-  };
-
   // Function to render the list items
   const renderListItems = () => {
-    return data.map((item) => (
+    return data.map((item, id) => (
       <div key={item.id}>
         <ListItem
           name={item.name} // Pass the name prop
           desc={item.description}
           message={item.message}
-          onClick={() => handleClick(item.id)} // Pass the id to onClick
+          id={item.id}
           time={item.time}
           buttonType="action"
         />
