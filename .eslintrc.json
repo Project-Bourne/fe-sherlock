@@ -18,5 +18,15 @@
     "@next/next/no-page-custom-font": "off",
     "no-use-before-define": ["off"],
     "max-lines-per-function": ["off"]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+      "rules": {
+        // Add rule overrides for specific files or patterns
+        "jsx-a11y/label-has-associated-control": "off",
+        // Add more rule overrides as needed
+      }
+    }
+  ]
 }

@@ -3,7 +3,7 @@ type TruncateModel = {
   breakAt: number;
 };
 
-const useTruncate = (text, breakAt) => {
+const useTruncate = (text='Title', breakAt) => {
   if (text.length > breakAt) {
     let brokenText = text.substr(0, breakAt);
     let truncatedText = brokenText + '...';

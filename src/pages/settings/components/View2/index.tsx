@@ -1,7 +1,7 @@
-import { Dropdown, DropdownWithFlag } from '@/components/ui';
+import { Dropdown, DropdownWithFlag } from '../../../../components/ui';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { UserRoles } from '@/utils/constants';
+import { UserRoles } from '../../../../utils/constants';
 import { useCountries } from 'use-react-countries';
 import { useRouter } from 'next/router';
 

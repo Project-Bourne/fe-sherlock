@@ -16,7 +16,7 @@ const style = {
   p: 4,
 };
 
-const SummaryPopUp = ({ summary, handleClose }) => {
+const SummaryPopUp = ({ summary, handleClose, image }) => {
   return (
     <Modal
       open={!!summary} // Open modal if summary is provided
@@ -28,6 +28,7 @@ const SummaryPopUp = ({ summary, handleClose }) => {
         <Typography id="modal-modal-title" variant="h6" component="h2">
           Summary
         </Typography>
+        <img src={image} className='w-full h-[100px] rounded-full' style={{objectFit: "contain"}} />
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
           {summary}
         </Typography>

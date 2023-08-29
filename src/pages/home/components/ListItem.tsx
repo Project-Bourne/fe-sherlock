@@ -1,5 +1,5 @@
 import React from "react";
-import { useTruncate } from "@/components/custom-hooks";
+import { useTruncate } from "../../../components/custom-hooks";
 import { ListItemModels } from "../model/home.model";
 import { useRouter } from "next/router";
 

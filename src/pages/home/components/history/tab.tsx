@@ -8,7 +8,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import Histroy from './History';
 import Bookmark from '../bookmark/Bookmark';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveTab } from '@/redux/reducer/tabSlice';
+import { setActiveTab } from '../../../../redux/reducer/tabSlice';
 
 interface TabPanelProps {
   children?: React.ReactNode;

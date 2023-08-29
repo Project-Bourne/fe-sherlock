@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import CustomModal from "@/components/ui/CustomModal";
+import CustomModal from "../../../../components/ui/CustomModal";
 import SummarizeSettings from "../ModalPopUp/summarizeSettings";
 
 const FileUploadSection = ({ file, handleDeleteFile, isLoading }) => {
@@ -47,11 +47,19 @@ const FileUploadSection = ({ file, handleDeleteFile, isLoading }) => {
         {!isLoading && (
           <div
             className="flex md:w-[50%] w-[100%] align-middle justify-end  mt-4"
-            onClick={() => router.push("/home/analyzed")} //navigate to Analyezed_content page
+            onClick={() => router.push("/home/analyzed")}
             style={{ cursor: "pointer" }}
           >
-            <div className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-sirp-primary text-white rounded-[15px] font-extrabold">
-              <span className="ml-3">Analyze</span>
+            <div  className="p-5 flex w-[35%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
+              <span> <Image
+                src={require(`../../../../assets/icons/circle.svg`)}
+                alt="upload image"
+                width={20}
+                height={20}
+                priority
+                className="rotate-animation"
+              /></span>
+              <span className="ml-3">Analyzing</span>
             </div>
           </div>
         )}

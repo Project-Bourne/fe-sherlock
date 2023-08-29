@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { useTruncate } from '@/components/custom-hooks';
-import { ActivityCardModel } from '@/global/users.module';
+import { useTruncate } from '../../components/custom-hooks';
+import { ActivityCardModel } from '../../global/users.module';
 
 export function ActivityCard({
   time,

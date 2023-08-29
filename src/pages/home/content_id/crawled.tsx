@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ActionIcons from "../components/actionIcons/ActionIcon";
-import { Breadcrumbs } from "@/components/ui";
+import { Breadcrumbs } from "../../../components/ui";
 import Min_and_Max_icon from "../components/Min_Max_icon";
 import MetaData from "../components/MetaData";
 import DummyText from "../components/dummyText";

@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
-import { useOnClickOutside } from "@/components/custom-hooks";
+import { useOnClickOutside } from "../../../../components/custom-hooks";
 import Image from 'next/image'
-import { useTruncate } from "@/components/custom-hooks";
+import { useTruncate } from "../../../../components/custom-hooks";
+import React from "react";
 
 function LoadingModal({ closeModal, formData }) {
-    const ref = useRef();
+    const ref = useRef<HTMLDivElement>(null);
     useOnClickOutside(ref, closeModal);
    const content =  useTruncate(formData, 30)
 
