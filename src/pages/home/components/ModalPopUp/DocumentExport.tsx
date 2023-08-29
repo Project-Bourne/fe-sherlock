@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui';
+import { Button } from '../../../../components/ui';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function DocumentExport() {
   const success = () => toast('Copied!');
   const copyToClipboard = () => {
-    const paragraphText = document.getElementById('paragraph').innerText;
+    const paragraphElement = document.getElementById('paragraph') as HTMLDivElement;
+    const paragraphText = paragraphElement.innerText;
     navigator.clipboard.writeText(paragraphText);
     success();
   };

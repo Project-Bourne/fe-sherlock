@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import NavBarItem from './NavBarItem';
-import { NavBarContents } from '@/utils/constants';
+import { NavBarContents } from '../../../utils/constants';
 
 function NavBar() {
   return (

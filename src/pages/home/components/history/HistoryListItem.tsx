@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useTruncate } from '@/components/custom-hooks';
+import { useTruncate } from '../../../../components/custom-hooks';
 import Image from 'next/image';
 import ListItemModels from '../../../../utils/model/home.models';
 import { DateTime } from 'luxon';
 import { useDispatch } from 'react-redux';
-import { fetchData } from '@/hooks/FetchHistory'
-import AnalyzerService from '@/services/Analyzer.service';
+import { fetchData } from '../../../../hooks/FetchHistory'
+import AnalyzerService from '../../../../services/Analyzer.service';
 
 function ListItem({
     uuid,

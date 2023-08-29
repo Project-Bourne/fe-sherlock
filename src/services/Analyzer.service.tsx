@@ -1,4 +1,4 @@
-import { request } from "@/hooks/api";
+import { request } from "../hooks/api";
 
 class AnalyzerService {
   /**
@@ -22,6 +22,31 @@ class AnalyzerService {
       throw error;
     }
   }
+
+
+
+    /**
+   * Create a new Analysis.
+   * @param {Object} data - The data of the new workspace.
+   * @returns {Promise<Object>} - The response data from the server.
+   */
+
+    static async analyzeFile(data) {
+      try {
+        const response = await request(
+          `analysis/file`,
+          "POST",
+          data,
+          true,
+          false,
+          false,
+        );
+        return response;
+      } catch (error) {
+        throw error;
+      }
+    }
+  
 
   /**
    * Delete a translation by its ID.
@@ -74,10 +99,10 @@ class AnalyzerService {
    */
 
 
-  static async getTranslationsById(Id) {
+  static async getAnalysisById(Id) {
     try {
       const response = await request(
-        `translation/${Id}`,
+        `analysis/${Id}`,
         "GET",
         true,
         false,

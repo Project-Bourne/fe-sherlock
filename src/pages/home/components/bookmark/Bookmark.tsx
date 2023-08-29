@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import BookmarkContent from './BookmarkContent';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBookmark } from '@/redux/reducer/analyzerSlice';
+import { setBookmark } from '../../../../redux/reducer/analyzerSlice';
 
 function Bookmark() {
   const { history } = useSelector((state:any) => state?.analyze)
@@ -13,7 +13,7 @@ function Bookmark() {
 
 
   return (
-    <div className="h-[100%] w-[100%]">
+    <div className="h-[100%] w-[100%] px-10">
       <BookmarkContent />
     </div>
   );

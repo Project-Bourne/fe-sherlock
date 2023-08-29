@@ -1,5 +1,5 @@
-import TrainingLayout from '@/layout/TrainingLayout';
-import { FAQS, LogData, QuickSearch } from '@/utils/constants';
+import TrainingLayout from '../../../layout/TrainingLayout';
+import { FAQS, LogData, QuickSearch } from '../../../utils/constants';
 import React from 'react';
 import { SearchComp, FAQComp } from '../components';
 import Image from 'next/image';

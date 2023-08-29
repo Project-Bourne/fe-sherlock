@@ -15,14 +15,14 @@ function HistoryContent() {
                         return (
                             <div key={item.translationUuid} className='"bg-sirp-listBg border h-[100%] w-[100%] md:mx-2 mx-2 my-1 rounded-[1rem]'>
                                 <ListItem
-                                    uuid={item.translationUuid}
-                                    translateid={item.uuid}
-                                    title={item.translate.title} // Pass the title
-                                    translation={item.translate.textTranslation} // Pass the summary
-                                    time={item.createdAt}
-                                    isArchived={item.bookmark} // Pass the isArchived value
+                                    uuid={item?.analysisUuid}
+                                    translateid={item?.uuid}
+                                    title={item?.analysis?.title} // Pass the title
+                                    translation={item?.analysis?.title} // Pass the summary
+                                    time={item?.createdAt}
+                                    isArchived={item?.bookmark} // Pass the isArchived value
                                     buttonType="action"
-                                    actionButtons={<DeleteIcon doc={item.title} />}
+                                    actionButtons={<DeleteIcon doc={item?.title} />}
                                 />
                             </div>
                         );

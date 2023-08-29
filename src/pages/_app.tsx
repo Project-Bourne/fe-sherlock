@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppLayout } from '@/layout/index';
-import '@/styles/globals.css';
+import { AppLayout } from '../layout/index';
+import '../styles/globals.css';
 import { motion } from 'framer-motion';
 import { Provider } from "react-redux";
 import { store, persistor } from "../redux/store";

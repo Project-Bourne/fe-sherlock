@@ -1,5 +1,5 @@
-import { TabComp } from '@/pages/settings/components';
-import { TrainingData } from '@/utils/constants';
+import { TabComp } from '../../pages/settings/components';
+import { TrainingData } from '../../utils/constants';
 import React, { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 

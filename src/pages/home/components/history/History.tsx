@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HistroyContent from './HistoryContent';
 import { useDispatch } from 'react-redux';
-import {fetchData} from '@/hooks/FetchHistory'
+import {fetchData} from '../../../../hooks/FetchHistory'
 
 
 function Histroy() {
@@ -12,7 +12,7 @@ function Histroy() {
   }, [dispatch]);
 
   return (
-    <div className="h-[100%] w-[100%]">
+    <div className="h-[100%] w-[100%] px-10">
       <HistroyContent  />
     </div>
   );

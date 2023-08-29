@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import BreadCrum from "../../components/ui/Breadcrumbs";
 import Min_and_Max_icon from "./components/Min_Max_icon";
 import DummyText from "./components/dummyText";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux';
+import AnalyzerService from "../../services/Analyzer.service"
+import NotificationService from '../../services/notification.service';
+import { setTextAnalysis } from "../../redux/reducer/analyzerSlice";
 
 function homecontent() {
-    const router = useRouter()
-    const dispatch = useDispatch();
-    const { analyzedText, analyzedTitle, analysisArray } = useSelector((state:any) => state.analyze);
+  const router = useRouter()
+  const dispatch = useDispatch();
+  const [singledata, setsingledata] = useState({})
+  const [showLoader, setShowLoader] = useState(false)
+  const { analyzedText, analyzedTitle, analysisArray } = useSelector((state: any) => state.analyze);
 
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
   const handleMax = () => {
@@ -19,6 +24,35 @@ function homecontent() {
     //hide and show meta data
     setHideMeta(false);
   };
+
+  useEffect(() => {
+    const fetchSingleAnalysis = async () => {
+      try {
+        const {id} = router.query
+        console.log(router)
+        const request = await AnalyzerService.getAnalysisById(id);
+        console.log(request, 'rewuest')
+        if (request.status) {
+          dispatch(setTextAnalysis(request.data))
+          //     setShowLoader(false);
+          setsingledata(request.data)
+          //     router.push('/home/analyzed');
+        } else {
+          setShowLoader(false);
+          router.push('/home');
+          NotificationService.error({
+            message: "Error!",
+            addedText: <p>{request.message}. please try again</p>,
+          });
+        }
+      } catch (error) {
+        setShowLoader(false);
+        console.log(error);
+      }
+    }
+    fetchSingleAnalysis()
+  }, [])
+
   return (
     <div className="bg-sirp-secondary2 h-[100%] mx-5 rounded-[1rem]">
       <div className="flex md:justify-between  flex-wrap md:px-5 md:py-5 ">
@@ -54,7 +88,7 @@ function homecontent() {
           <div className="pl-5 pb-5 mt-[5rem]">
             <p className="text-md text-gray-500">Title</p>
             <h1 className="md:text-3xl text-[14px]">
-             {analyzedTitle}
+              {analyzedTitle}
             </h1>
           </div>
         )}

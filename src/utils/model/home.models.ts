@@ -1,4 +1,3 @@
-import React from 'react';
 interface ListItemModels {
   uuid?: string | number;
   isArchived? : any;
@@ -10,6 +9,5 @@ interface ListItemModels {
   actionButtons?: React.ReactNode;
   viewDeleteButtons?: React.ReactNode;
   buttonType?: string;
-
 }
 export default ListItemModels;
