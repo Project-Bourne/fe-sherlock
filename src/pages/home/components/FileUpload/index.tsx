@@ -12,7 +12,7 @@ const FileUpload = () => {
   const [formData, setFormData] = useState("");
   const router = useRouter()
   const dispatch = useDispatch()
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<File | null>(null);
   const [showLoader, setShowLoader] = useState(false)
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -169,7 +169,7 @@ const FileUpload = () => {
               <div className='flex align-middle items-center justify-center'>
                 <span className='rounded-full bg-[#E8F8FD] flex align-middle justify-center w-[40px] h-[40px]'>
                   <Image
-                    src={require(`../../../../assets/icons/file.svg`)}
+                    src={require(`../../../../../public//icons/file.svg`)}
                     alt="upload image"
                     width={20}
                     height={20}
@@ -186,7 +186,7 @@ const FileUpload = () => {
               </div>
               <span className='rounded-full bg-[#FEE2E2] flex align-middle justify-center w-[40px] h-[40px]' onClick={handleDeleteFile}>
                 <Image
-                  src={require(`../../../../assets/icons/red-delete.svg`)}
+                  src={require(`../../../../../public//icons/red-delete.svg`)}
                   alt="upload image"
                   width={18}
                   height={18}
@@ -200,7 +200,7 @@ const FileUpload = () => {
               </div>}
               {isLoading && <div className="p-5 flex w-[35%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
                 <span> <Image
-                  src={require(`../../../../assets/icons/circle.svg`)}
+                  src={require(`../../../../../public/icons/circle.svg`)}
                   alt="upload image"
                   width={20}
                   height={20}
@@ -217,7 +217,7 @@ const FileUpload = () => {
           <div className='flex align-middle w-full border-2 rounded-full border-[#E5E7EB]-500  border-dotted bg-[]'>
             <span className='flex align-middle justify-center mx-3'>
               <Image
-                src={require(`../../../../assets/icons/link.svg`)}
+                src={require(`../../../../../public/icons/link.svg`)}
                 alt="upload image"
                 width={20}
                 height={20}
@@ -229,7 +229,7 @@ const FileUpload = () => {
             <span className='flex align-middle justify-center mx-3' onClick={handleClear}>
               <Image
                 className='flex align-middle justify-center font-light text-black'
-                src={require(`../../../../assets/icons/x.svg`)}
+                src={require(`../../../../../public/icons/x.svg`)}
                 alt="upload image"
                 width={20}
                 height={20}
@@ -242,7 +242,7 @@ const FileUpload = () => {
               <span className='flex align-middle justify-center mx-3'>
                 <Image
                   className='flex align-middle justify-center'
-                  src={require(`../../../../assets/icons/cloud.svg`)}
+                  src={require(`../../../../../public/icons/cloud.svg`)}
                   alt="upload image"
                   width={25}
                   height={25}

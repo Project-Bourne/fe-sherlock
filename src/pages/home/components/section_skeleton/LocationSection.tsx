@@ -14,7 +14,7 @@ function LocationSection({ isLoading, location }) {
           <Skeleton width={50} height={50} circle />
         ) : (
           <Image
-            src={require("../../../../assets/icons/map.svg")}
+            src={require("../../../../../public/icons/map.svg")}
             alt="documents"
             className="cursor-pointer"
             width={50}

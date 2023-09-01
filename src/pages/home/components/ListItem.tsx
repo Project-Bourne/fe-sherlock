@@ -1,6 +1,6 @@
 import React from "react";
 import { useTruncate } from "../../../components/custom-hooks";
-import { ListItemModels } from "../model/home.model";
+import { ListItemModels } from "../../../models/home/home.model";
 import { useRouter } from "next/router";
 
 function ListItem({ name, desc, message, time, id }: ListItemModels) {

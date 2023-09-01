@@ -15,10 +15,10 @@ function CustomToast({ message, addedText, position, type }: ToastModel) {
 
     //   return and icon path based on the notification type 
       const _toast_type = () => {
-        if(type === 'success') return require('../../assets/icons/toast.success.svg')
-        if(type === 'error') return require('../../assets/icons/toast.error.svg')
+        if(type === 'success') return require('../../../public/icons/toast.success.svg')
+        if(type === 'error') return require('../../../public/icons/toast.error.svg')
         // if(type === 'info') return '../../../'
-        if(type === 'warn') return require('../../assets/icons/toast.warn.svg')
+        if(type === 'warn') return require('../../../public/icons/toast.warn.svg')
       }
 
     //   return a position style based on position entered 

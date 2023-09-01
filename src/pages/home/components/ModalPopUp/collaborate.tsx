@@ -25,7 +25,7 @@ function collaborate() {
           <div className="ml-5 w-[25rem]">
             <div className="flex gap-3 items-center my-5 cursor-pointer">
               <Image
-                src={require('../../../../assets/icons/Avatarmeta.svg')}
+                src={require('../../../../../public/icons/Avatarmeta.svg')}
                 alt="documents"
                 className="cursor-pointer"
                 width={50}
@@ -37,7 +37,7 @@ function collaborate() {
             </div>
           </div>
           <Image
-            src={require('../../../../assets/icons/square-check 1.svg')}
+            src={require('../../../../../public/icons/square-check 1.svg')}
             alt="documents"
             className="cursor-pointer mr-5"
             width={20}
@@ -47,7 +47,7 @@ function collaborate() {
           <div className="ml-5 w-[25rem]">
             <div className="flex gap-3 items-center my-5 cursor-pointer">
               <Image
-                src={require('../../../../assets/icons/Avatarmeta.svg')}
+                src={require('../../../../../public/icons/Avatarmeta.svg')}
                 alt="documents"
                 className="cursor-pointer"
                 width={50}
@@ -59,7 +59,7 @@ function collaborate() {
             </div>
           </div>
           <Image
-            src={require('../../../../assets/icons/square-check 1.svg')}
+            src={require('../../../../../public/icons/square-check 1.svg')}
             alt="documents"
             className="cursor-pointer mr-5"
             width={20}
@@ -69,7 +69,7 @@ function collaborate() {
           <div className="ml-5 w-[25rem]">
             <div className="flex gap-3 items-center my-5 cursor-pointer">
               <Image
-                src={require('../../../../assets/icons/Avatarmeta.svg')}
+                src={require('../../../../../public/icons/Avatarmeta.svg')}
                 alt="documents"
                 className="cursor-pointer"
                 width={50}
@@ -81,7 +81,7 @@ function collaborate() {
             </div>
           </div>
           <Image
-            src={require('../../../../assets/icons/square-check 1.svg')}
+            src={require('../../../../../public/icons/square-check 1.svg')}
             alt="documents"
             className="cursor-pointer mr-5"
             width={20}

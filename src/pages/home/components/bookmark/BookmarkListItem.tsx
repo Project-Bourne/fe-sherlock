@@ -73,8 +73,8 @@ function BookmarkListItem({
                 <Image
                     src={
                         isArchived
-                            ? require(`../../../../assets/icons/on.saved.svg`)
-                            : require(`../../../../assets/icons/saved.svg`)
+                            ? require(`../../../../../public/icons/on.saved.svg`)
+                            : require(`../../../../../public/icons/saved.svg`)
                     }
                     alt="documents"
                     className="cursor-pointer w-4 h-4"

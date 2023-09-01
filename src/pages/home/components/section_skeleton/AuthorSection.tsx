@@ -14,7 +14,7 @@ function AuthorSection({ isLoading, author }) {
           <Skeleton circle width={50} height={50} />
         ) : (
           <Image
-            src={require("../../../../assets/icons/Avatarmeta.svg")}
+            src={require("../../../../../public/icons/Avatarmeta.svg")}
             alt="documents"
             className="cursor-pointer"
             width={50}
@@ -32,7 +32,7 @@ function AuthorSection({ isLoading, author }) {
           <Skeleton circle width={50} height={50} />
         ) : (
           <Image
-            src={require("../../../../assets/icons/2faceAvatar.svg")}
+            src={require("../../../../../public/icons/2faceAvatar.svg")}
             alt="documents"
             className="cursor-pointer ml-10"
             width={130}

@@ -20,7 +20,7 @@ function homecontent() {
         <div className="">
           <Link href="../">
             <Image
-              src={require('../../../assets/icons/arrow-narrow-left 1.svg')}
+              src={require('../../../../public/icons/arrow-narrow-left 1.svg')}
               alt="documents"
               className="cursor-pointer pb-5"
               width={20}

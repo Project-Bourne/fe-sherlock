@@ -24,7 +24,7 @@ function homecontent() {
       <div className="flex md:justify-between  flex-wrap md:px-5 md:py-5 ">
         <div className="">
           <Image
-            src={require("../../assets/icons/arrow-narrow-left 1.svg")} // return back to home page
+            src={require("../../../public/icons/arrow-narrow-left 1.svg")} // return back to home page
             alt="documents"
             className="cursor-pointer pb-5"
             width={20}

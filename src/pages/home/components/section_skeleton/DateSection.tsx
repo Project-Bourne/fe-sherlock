@@ -14,7 +14,7 @@ function DateSection({ isLoading, date }) {
           <Skeleton width={50} height={50} circle />
         ) : (
           <Image
-            src={require("../../../../assets/icons/date.svg")}
+            src={require("../../../../../public/icons/date.svg")}
             alt="documents"
             className="cursor-pointer"
             width={50}

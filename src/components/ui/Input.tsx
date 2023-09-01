@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useRef, useState } from 'react';
-import { InputModel, DropdownModel } from '@/models/ui/components.models';
+import { InputModel, DropdownModel } from '../../models/ui/components.models';
 import { useOnClickOutside } from '../custom-hooks';
 
 const countries = require('../../utils/countries.json');
@@ -33,7 +33,7 @@ function Input(props: InputModel) {
           >
             {!toggle ? (
               <Image
-                src={require('../../assets/icons/Hide.svg')}
+                src={require('../../../public/icons/Hide.svg')}
                 alt="Filter"
                 width={20}
                 height={20}
@@ -84,22 +84,25 @@ function DropdownWithFlag(props: DropdownModel) {
   const { onClick, selectItem, className, style, isDisabled } = props;
   const [dropdown, setDropdown] = useState(false);
   const [country, setCountry] = useState({
-    name: 'Nigeria',
-    flag: 'https://flagcdn.com/ng.svg'
+    name: "Nigeria",
+    flag: "https://flagcdn.com/ng.svg",
   });
   const [filteredCountries, setFilteredCountries] = useState(countries);
-  const [countrySearch, setCountrySearch] = useState('');
+  const [countrySearch, setCountrySearch] = useState("");
   const searchInput = useRef();
 
-  const dropdownRef = useRef();
+  const dropdownRef = useRef<HTMLDivElement | null>(null);;
   useOnClickOutside(dropdownRef, () => {
     setDropdown(false);
-    setCountrySearch('');
+    setCountrySearch("");
   });
 
   // toggle dropdown if component is not disabled
   const handleDropdown = () => {
-    setDropdown(!dropdown);
+    if(!isDisabled){
+      setDropdown(!dropdown);
+    }
+    else{ return }
     // if (dropdown) {
     //     document.getElementById('country-search').addEventListener('click', () => {
     //         document.getElementById('country-search').focus()
@@ -112,14 +115,14 @@ function DropdownWithFlag(props: DropdownModel) {
     setDropdown(false);
     selectItem(country);
     setFilteredCountries(countries);
-    setCountrySearch('');
+    setCountrySearch("");
   };
 
-  const filterCountries = event => {
+  const filterCountries = (event) => {
     // event.preventDefault();
     // setCountrySearch(event.target.value);
-    console.log('Filtering', event.target.value);
-    let filteredCountries = countries.filter(country => {
+    console.log("Filtering", event.target.value);
+    let filteredCountries = countries.filter((country) => {
       if (
         country.name
           .toLowerCase()
@@ -139,7 +142,7 @@ function DropdownWithFlag(props: DropdownModel) {
     const menuRef = useRef();
     useOnClickOutside(menuRef, () => {
       setDropdown(false);
-      setCountrySearch('');
+      setCountrySearch("");
     });
 
     return (
@@ -148,19 +151,19 @@ function DropdownWithFlag(props: DropdownModel) {
         className={`h-[170px] hover:cursor-pointer w-full shadow-md overflow-scroll bg-white absolute z-7`}
       >
         {/* <input 
-                    className="static w-[400px] mx-auto px-4 mb-2 border-b-2 h-[40px] text-black" 
-                    id="country-search"
-                    placeholder="Search"
-                    type="text"
-                    onChange={(event: any) => {
-                        event.preventDefault();
-                        setCountrySearch(event.target.value);
-                        filterCountries(event);
-                    }}
-                    key={'search-input'}
-                    // ref={searchInput}
-                    value={countrySearch}
-                /> */}
+                  className="static w-[400px] mx-auto px-4 mb-2 border-b-2 h-[40px] text-black" 
+                  id="country-search"
+                  placeholder="Search"
+                  type="text"
+                  onChange={(event: any) => {
+                      event.preventDefault();
+                      setCountrySearch(event.target.value);
+                      filterCountries(event);
+                  }}
+                  key={'search-input'}
+                  // ref={searchInput}
+                  value={countrySearch}
+              /> */}
         <div className="">
           {filteredCountries
             .sort((a, b) => {
@@ -211,7 +214,7 @@ function DropdownWithFlag(props: DropdownModel) {
       {dropdown && (
         <>
           <input
-            className="static w-[400px] mx-auto px-4 mb-2 border-b-2 h-[40px] text-black"
+            className="static w-[100%] mx-auto px-4 mb-2 border-b-2 h-[40px] text-black"
             id="country-search"
             placeholder="Search"
             type="text"
@@ -220,7 +223,7 @@ function DropdownWithFlag(props: DropdownModel) {
               setCountrySearch(event.target.value);
               filterCountries(event);
             }}
-            key={'search-input'}
+            key={"search-input"}
             // ref={searchInput}
             value={countrySearch}
           />
@@ -252,7 +255,7 @@ function LanguagesDropdown(props: DropdownModel) {
   // dropdwon compoent
   const Menu = () => {
     // close dropdown menu when outside is clicked
-    const menuRef = useRef();
+    const menuRef = useRef<HTMLDivElement | null>(null);
     useOnClickOutside(menuRef, () => setDropdown(false));
 
     return (
@@ -275,7 +278,7 @@ function LanguagesDropdown(props: DropdownModel) {
 
   return (
     <div
-      className={`relative flex cursor-pointer flex-row flex-wrap items-center border-b-2 border-sirp-primary mb-[-2px] cursor-pointer ${style}`}
+      className={`relative flex flex-row flex-wrap items-center border-b-2 border-sirp-primary mb-[-2px] cursor-pointer ${style}`}
     >
       <div
         className={`flex justify-between items-center my-2 w-[150px] px-1 rounded-md border-gray-100 hover:cursor-pointer`}
