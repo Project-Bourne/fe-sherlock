@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import ActionIcons from '../components/actionIcons/ActionIcon';
+import ActionIcons from '../../home/components/actionIcons/ActionIcon';
 import Image from 'next/image';
-import BreadCrum from '../components/BreadCrum';
-import Min_and_Max_icon from '../components/Min_Max_icon';
-import DummyText from '../components/dummyText';
+import BreadCrum from '../../home/components/BreadCrum';
+import Min_and_Max_icon from '../../home/components/Min_Max_icon';
+import DummyText from '../../home/components/dummyText';
 import Link from 'next/link';
 
 function homecontent() {

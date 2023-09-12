@@ -17,6 +17,10 @@ const AnalyzerSlice = createSlice({
     setBookmark: (state) => {
       state.bookmark = state.history.filter(el => el.bookmark);
     },
+    setTextandTitle:(state, action) => {
+      state.analyzedText = action.payload.text;
+      state.analyzedTitle = action.payload.title;
+    },
     setTextAnalysis: (state, action) => {
       state.analyzedText = action.payload.text;
       state.analysisArray = action.payload.analysisArray;
@@ -29,6 +33,8 @@ export const {
   setHistory,
   setTextAnalysis,
   setBookmark,
+  setInputText,
+  setTextandTitle
 } = AnalyzerSlice.actions;
 
 export default AnalyzerSlice.reducer;

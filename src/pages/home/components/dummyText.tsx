@@ -15,10 +15,10 @@ function DummyText() {
     analysisArray.forEach(item => {
       const keyword = item.name;
       const colorCode = item.colorCode;
-      const coloredKeyword = `<span class='tags' title='${item.summary}' image='${item.imageUrl}' style="background-color: ${colorCode}; padding: 5px; margin: 5px; border-radius: 5px; color: white; cursor: pointer;">${keyword}</span>`;
+      const coloredKeyword = `<span class='tags' title='${item.summary}' image='${item.imageUrl}' style=" color: #4582C4;  padding: 0px; text-decoration: underline; font-style: italic; margin: 1px; border-radius: 5px; cursor: pointer;">${keyword}</span>`;
       newText = newText.replace(new RegExp(keyword, 'g'), coloredKeyword);
     });
-
+    // style="background-color: ${colorCode};
     setText(newText);
   }, [analyzedText, analysisArray]);
 
