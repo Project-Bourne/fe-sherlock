@@ -72,7 +72,7 @@ const FileUpload = () => {
       formData.append('files', selectedFile);
       setIsLoading(true);
       try {
-        const res = await fetch('http://192.81.213.226:89/api/v1/uploads', {
+        const res = await fetch('http://192.81.213.226:81/89/api/v1/uploads', {
           method: 'POST',
           body: formData,
         })
@@ -135,7 +135,7 @@ const FileUpload = () => {
       formData.append('file', droppedFile);
 
       try {
-        const response: any = await fetch('http://192.81.213.226:89/api/v1/upload', {
+        const response: any = await fetch('http://192.81.213.226:81/89/api/v1/upload', {
           method: 'POST',
           body: formData,
         });

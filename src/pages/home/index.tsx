@@ -23,12 +23,12 @@ function Home() {
     setHideMeta(false);
   };
 
-  useEffect(()=>{
-    dispatch(setTextandTitle({
-      text:'',
-      title:'',
-    }))
-  },[])
+  // useEffect(()=>{
+  //   dispatch(setTextandTitle({
+  //     text:'',
+  //     title:'',
+  //   }))
+  // },[])
   const showTitle = false;
   console.log(router, "i am router");
   return (

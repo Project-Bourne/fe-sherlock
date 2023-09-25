@@ -6,7 +6,7 @@
 
 let access = '';
 if (typeof window !== 'undefined') {
-  access = localStorage.getItem("deep-access") || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdkNjA0OTUzLTk0YzAtNGYzOC05N2I3LWFlYWEyYWI5YjRjMCIsImlhdCI6MTY5NDQ1Njk2NCwiZXhwIjoxNjk0NTQzMzY0fQ.H3LChv5kz3GEjFheeZxn8VS86cdWPg8uId1StHwqlgk';
+  access = localStorage.getItem("deep-access") || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ1OThlMmI5LTkwZmYtNDc2NS1iYjA0LTgzMzgyZGVlNmUyNiIsImlhdCI6MTY5NTYxMzM2NSwiZXhwIjoxNjk1Njk5NzY1fQ.giwDNBW-eOYFUt1kL7Ba06sSvXoATBbqBmTsmBxFB1I';
 }export const requestHeader = {
     Accept: 'application/json',
     'Cache-Control': 'no-cache',
@@ -28,7 +28,8 @@ if (typeof window !== 'undefined') {
 
  
   
-  let API_USER_URL = "http://192.81.213.226:81/";
+  let API_USER_URL = "http://192.81.213.226:81/81/";
+  
   export async function request(url, method, payload, token, text, form) {
     requestHeader['Content-Type'] =
       form === true ? 'multipart/form-data' : 'application/json';
