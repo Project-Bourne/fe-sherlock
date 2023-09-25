@@ -77,7 +77,7 @@ function Home() {
                 </h1>
               )}
             </div>
-            <div className="py-10 mx-5">
+            <div className=" mx-5">
               <DummyText />
             </div>
           </div>
