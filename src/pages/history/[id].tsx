@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import AnalyzerService from "../../services/Analyzer.service"
 import NotificationService from '../../services/notification.service';
 import { setTextAnalysis } from "../../redux/reducer/analyzerSlice";
+import ActionIcons from "../../components/ui/ActionIcons";
+import CustomModal from "../../components/ui/CustomModal";
+import Loader from "../../components/ui/Loader";
 
 function homecontent() {
   const router = useRouter()
@@ -29,12 +32,12 @@ function homecontent() {
     const fetchSingleAnalysis = async () => {
       if (id) {
         try {
+          setShowLoader(true);
           const request = await AnalyzerService.getAnalysisById(id);
           if (request.status) {
             dispatch(setTextAnalysis(request.data))
-            //     setShowLoader(false);
             setsingledata(request.data)
-            //     router.push('/home/analyzed');
+            setShowLoader(false);
           } else {
             setShowLoader(false);
             router.push('/history');
@@ -57,68 +60,55 @@ function homecontent() {
 
   return (
     <div className="bg-sirp-secondary2 h-[100%] mx-5 rounded-[1rem]">
-      <div className="flex md:justify-between  flex-wrap md:px-5 md:py-1 ">
-        {/* <div className=""> */}
-        {/* <Image
-            src={require("../../../public/icons/arrow-narrow-left 1.svg")} // return back to home page
-            alt="documents"
-            className="cursor-pointer pb-5"
-            width={20}
-            onClick={() => router.back()} //navigate to Analyezed_content page
-          /> */}
-
-        {/* the name goes here  */}
-        {/* <h1 className="text-2xl">Analysed Content</h1> */}
-        {/* </div> */}
-        {/* run analyze buuton */}
-        {/* <div
-          className="flex md:w-[15%] w-[50%] h-[3.5rem] rounded-[1rem] justify-center items-center bg-sirp-primary"
-          onClick={() => router.push("/home/content_id/crawled")} //navigate to Analyezed_content page
-          style={{ cursor: "pointer" }}
+      {showLoader ? (
+        <CustomModal
+          style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
+          closeModal={() => setShowLoader(false)}
         >
-          <span className="text-white">Run Analyzer</span>
-        </div> */}
-      </div>
-      {/* breadcrum section  */}
-      {/* <BreadCrum /> */}
-      {/* <BreadCrum /> */}
+          <div className="flex justify-center items-center mt-[10rem]">
+            <Loader />
+          </div>
+        </CustomModal>
+      ) :
+        <>
+          <div className="flex md:justify-between  flex-wrap md:px-5 md:py-1 ">
+          </div>
 
-      {/* min and max */}
 
+          <div className=" mx-10 mt-[1rem] flex items-center justify-between">
+            <Image
+              src={require("../../../public/icons/arrow-narrow-left 1.svg")}
+              alt="documents"
+              className="cursor-pointer pb-5"
+              width={20}
+              onClick={() => router.back()}
+            />
+            <ActionIcons />
+          </div>
 
-      <div className=" mx-10 mt-[1rem]">
-        <Image
-          src={require("../../../public/icons/arrow-narrow-left 1.svg")} // return back to home page
-          alt="documents"
-          className="cursor-pointer pb-5"
-          width={20}
-          onClick={() => router.back()} //navigate to Analyezed_content page
-        />
-      </div>
-
-      {/* <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} /> */}
-
-      <div>
-        <div className="bg-white border my-[1rem] mx-10 rounded-[1rem]">
-          {/* <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} /> */}
-          {hideMeta == true && (
-            <div className="pl-5 pb-5 mt-[5rem]">
-              <p className="text-md text-gray-500">Title</p>
-              <h1 className="md:text-3xl text-[14px]">
-                {analyzedTitle}
-              </h1>
+          <div>
+            <div className="bg-white border my-[1rem] mx-10 rounded-[1rem]">
+              {hideMeta == true && (
+                <div className="pl-5 py-5">
+                  <p className="text-md text-gray-500">Title:</p>
+                  <h1 className="md:text-3xl text-[14px]">
+                    {analyzedTitle}
+                  </h1>
+                </div>
+              )}
+              {hideMeta == false && ( //hide and show meta data
+                <h1 className="md:text-lg font-bold pl-5 pb-2">
+                  {analyzedTitle}
+                </h1>
+              )}
             </div>
-          )}
-          {hideMeta == false && ( //hide and show meta data
-            <h1 className="md:text-lg font-bold pl-5 pb-2">
-              {analyzedTitle}
-            </h1>
-          )}
-        </div>
-        <div className="pb-10 mx-5">
-          <DummyText />
-        </div>
-      </div>
+            <div className="pb-10 mx-5">
+              <DummyText />
+            </div>
+          </div></>
+
+      }
+
     </div>
   );
 }

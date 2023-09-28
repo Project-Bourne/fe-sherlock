@@ -8,6 +8,7 @@ import { setBookmark } from '../../../../redux/reducer/analyzerSlice';
 import { useDispatch } from 'react-redux';
 import { fetchData } from '../../../../hooks/FetchHistory'
 import AnalyzerService from '../../../../services/Analyzer.service';
+import { Tooltip } from '@mui/material';
 
 function BookmarkListItem({
     uuid,
@@ -70,6 +71,7 @@ function BookmarkListItem({
         >
             <div className="flex gap-3 items-center  hover:text-gray-400">
                 {/* Save icon */}
+                <Tooltip title={isArchived ? "Remove from bookmark" : "Save to bookmark"}>
                 <Image
                     src={
                         isArchived
@@ -82,6 +84,7 @@ function BookmarkListItem({
                     height={10}
                     onClick={(e) => handleArchive(e, translateid)}
                 />
+                </Tooltip>
                 {/* name */}
                 <p className="text-sirp-black-500 ml-2 md:w-[20rem] hover:text-gray-400">
                     {useTruncate(title, 20)}

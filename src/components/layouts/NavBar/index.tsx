@@ -16,7 +16,7 @@ function NavBar() {
           priority
         />
         <h1 className="text-sirp-primary font-semibold text-[25px] hidden md:block">
-          Entity Checker
+        Analyzer
         </h1>
       </div>
       {/* items-center justify-center py-4 md:px-5 w-[100%] flex flex-row self-center */}

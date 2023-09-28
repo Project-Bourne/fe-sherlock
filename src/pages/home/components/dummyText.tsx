@@ -16,7 +16,7 @@ function DummyText() {
       const keyword = item.name;
       const colorCode = item.colorCode;
 
-      const coloredKeyword = `<span class='tags' style=" color: ${colorCode}; padding: 0px; text-decoration: underline; font-style: italic; margin: 1px; border-radius: 5px; cursor: pointer;">${keyword || ""}</span>`;
+      const coloredKeyword = `<span class='tags' style=" color: #4582C4; padding: 0px; text-decoration: underline; font-style: italic; margin: 1px; border-radius: 5px; cursor: pointer;">${keyword || ""}</span>`;
 
       // Replace occurrences of the keyword with the colored keyword
       newText = newText.replace(new RegExp(keyword, 'g'), coloredKeyword);

@@ -8,10 +8,18 @@ import Min_and_Max_icon from "./components/Min_Max_icon";
 import DummyText from "./components/dummyText";
 import { useDispatch, useSelector } from 'react-redux';
 import { setTextandTitle } from "../../redux/reducer/analyzerSlice";
+import AuthService from "../../services/auth.service";
+import NotificationService from "../../services/notification.service";
+import { setUserInfo } from "../../redux/reducer/authReducer";
+import ActionIcons from "../../components/ui/ActionIcons";
+import { Box, CircularProgress } from "@mui/material";
+import CustomModal from "../../components/ui/CustomModal";
+import Loader from '../../components/ui/Loader'
 
 function Home() {
   const router = useRouter()
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true)
   const { analyzedText, analyzedTitle, analysisArray } = useSelector((state: any) => state.analyze);
 
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
@@ -23,21 +31,53 @@ function Home() {
     setHideMeta(false);
   };
 
-  // useEffect(()=>{
-  //   dispatch(setTextandTitle({
-  //     text:'',
-  //     title:'',
-  //   }))
-  // },[])
+  useEffect(() => {
+    dispatch(setTextandTitle({
+      text: '',
+      title: '',
+    }))
+  }, [])
+  useEffect(() => {
+    setLoading(true);
+    try {
+      AuthService
+        .getUserViaAccessToken()
+        .then((response) => {
+          setLoading(false);
+          if (response?.status) {
+            dispatch(setUserInfo(response?.data));
+          }
+        })
+        .catch((err) => {
+          NotificationService.error({
+            message: "Error",
+            addedText: "Could not fetch user data",
+            position: "top-center",
+          });
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
   const showTitle = false;
   console.log(router, "i am router");
   return (
     // eslint-disable-next-line react/jsx-filename-extension
     <div className='pb-5'>
+      {loading && (
+        <CustomModal
+          style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
+          closeModal={() => setLoading(false)}
+        >
+          <div className="flex justify-center items-center mt-[10rem]">
+            <Loader />
+          </div>
+        </CustomModal>
+      )}
       {/* <h1 className="text-2xl pl-10 font-bold">Add Content</h1> */}
       <FileUpload />
       <div className="bg-sirp-secondary2 h-[100%] mx-5 rounded-[1rem]">
-        <div className="flex md:justify-between  flex-wrap md:px-5 md:py-5 ">
+        <div className="flex md:justify-between  flex-wrap md:px-5 md:pt-3 ">
           {/* <div className=""> */}
           {/* <Image
             src={require("../../../public/icons/arrow-narrow-left 1.svg")} // return back to home page
@@ -59,12 +99,25 @@ function Home() {
 
         {/* min and max */}
 
+
+        {/* <div className=" mx-10 flex items-center justify-end"> */}
+        {/* <Image
+          src={require("../../../public/icons/arrow-narrow-left 1.svg")} // return back to home page
+          alt="documents"
+          className="cursor-pointer pb-5"
+          width={20}
+          onClick={() => router.back()} //navigate to Analyezed_content page
+        /> */}
+        {/* <ActionIcons/> */}
+        {/* </div> */}
+
         {analyzedText ?
           <div>
-            <div className="bg-white border my-[3rem] mx-10 rounded-[1rem]">
+            <ActionIcons />
+            <div className="bg-white border mt-3 mx-10 rounded-[1rem]">
               {/* <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} /> */}
               {hideMeta == true && (
-                <div className="pl-5 pb-5 mt-[5rem]">
+                <div className="pl-5 p-5">
                   <p className="text-md text-gray-500">Title</p>
                   <h1 className="md:text-3xl text-[14px]">
                     {analyzedTitle}

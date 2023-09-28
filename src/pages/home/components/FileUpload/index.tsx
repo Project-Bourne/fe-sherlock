@@ -40,13 +40,12 @@ const FileUpload = () => {
           dispatch(setTextAnalysis(request.data))
           setShowLoader(false);
           setFormData('')
-          // router.push('/home/analyzed');
         } else {
           setShowLoader(false);
           router.push('/home');
           NotificationService.error({
             message: "Error!",
-            addedText: <p>{request.message}. please try again</p>,
+            addedText: <p>{request.error}. please try again</p>,
           });
         }
       } catch (error) {
@@ -59,6 +58,12 @@ const FileUpload = () => {
   const handleDeleteFile = () => {
     setFile(null);
     setIsFileUploaded(false);
+  };
+  const handleTextareaChange = (e) => {
+    setFormData(e.target.value);
+    // Automatically adjust the textarea's height
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 'px';
   };
 
   const handleFileUpload = async (event) => {
@@ -93,10 +98,11 @@ const FileUpload = () => {
           } else {
             setIsLoading(false);
             setIsFileUploaded(false)
+            console.log(newResponse, 'new')
             // router.push('/home');
             NotificationService.error({
               message: "Error!",
-              addedText: <p>{newResponse.message}. please try again</p>,
+              addedText: <p>{newResponse.error}. please try again</p>,
             });
           }
         } else {
@@ -109,6 +115,7 @@ const FileUpload = () => {
           console.error('File upload failed.');
         }
       } catch (error) {
+        console.log(error, 'error')
         setIsFileUploaded(false)
         setIsLoading(false);
         NotificationService.error({
@@ -220,22 +227,22 @@ const FileUpload = () => {
           >
             <span className="text-white">Run Analyzer</span>
           </div> */}
-          {formData.length === 0 && 
-          <div className='flex items-center mb-3'>
-            <span className='text-grey-400 mr-2 text-sm text-sirp-primary'>{fileName}</span>
-            <label htmlFor="file-input" className='px-4 py-1 rounded-lg' style={{ cursor: 'pointer', color: '#4582C4', backgroundColor: "white", border: '1px solid #4582C4' }}>
-              <DriveFolderUploadIcon style={{ color: '#4582C4', cursor: 'pointer' }} /> Upload File
-            </label>
+          {formData.length === 0 &&
+            <div className='flex items-center mb-3'>
+              <span className='text-grey-400 mr-2 text-sm text-sirp-primary'>{fileName}</span>
+              <label htmlFor="file-input" className='px-4 py-1 rounded-lg' style={{ cursor: 'pointer', color: '#4582C4', backgroundColor: "white", border: '1px solid #4582C4' }}>
+                <DriveFolderUploadIcon style={{ color: '#4582C4', cursor: 'pointer' }} /> Upload File
+              </label>
 
-            <input
-              type="file"
-              id="file-input"
-              style={{ display: 'none' }}
-              accept=".pdf,.doc,.docx,.txt"
-              onChange={handleFileUpload}
-            />
-          </div>}
-          <div className='flex align-middle w-full border-2 rounded-full border-[#E5E7EB]-500  border-dotted bg-[]'>
+              <input
+                type="file"
+                id="file-input"
+                style={{ display: 'none' }}
+                accept=".pdf,.doc,.docx,.txt"
+                onChange={handleFileUpload}
+              />
+            </div>}
+          <div className='flex align-middle w-full border-2 rounded-[1rem] border-[#E5E7EB]-500  border-dotted bg-[]'>
             <span className='flex align-middle justify-center mx-3'>
               <Image
                 src={require(`../../../../../public/icons/link.svg`)}
@@ -246,8 +253,14 @@ const FileUpload = () => {
               />
               {/* <span className='ml-3 font-light text-[#A1ADB5]'>Copy and paste link here</span> */}
             </span>
-            <input placeholder='Copy and paste content text here' className='py-5 w-[95%]  outline-none' value={formData} onChange={handleChange} onKeyDown={handleKeyDown} />
-
+            {/* <input placeholder='Copy and paste content text here' className='py-5 w-[95%]  outline-none' value={formData} onChange={handleChange} onKeyDown={handleKeyDown} /> */}
+            <textarea
+              placeholder="Copy and paste content text here"
+              className={`w-[95%] outline-none focus:ring-0 pt-8 resize-y min-h-[6rem] max-h-[15rem] overflow-auto`}
+              value={formData}
+              onKeyDown={handleKeyDown}
+              onChange={handleTextareaChange}
+            />
             <span className='flex align-middle justify-center mx-3' onClick={handleClear}>
               <Image
                 className='flex align-middle cursor-pointer justify-center font-light text-black'
