@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import BreadCrum from "../../components/ui/Breadcrumbs";
-import Min_and_Max_icon from "../home/components/Min_Max_icon";
 import DummyText from "../home/components/dummyText";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux';
 import AnalyzerService from "../../services/Analyzer.service"
 import NotificationService from '../../services/notification.service';
 import { setTextAnalysis } from "../../redux/reducer/analyzerSlice";
-import ActionIcons from "../../components/ui/ActionIcons";
+import ActionIcons from "../home/components/actionIcons/ActionIcons";
 import CustomModal from "../../components/ui/CustomModal";
 import Loader from "../../components/ui/Loader";
 
 function homecontent() {
   const router = useRouter()
   const dispatch = useDispatch();
-  const [singledata, setsingledata] = useState({})
+  const [uuid, setUuid] = useState({})
   const [showLoader, setShowLoader] = useState(false)
   const { analyzedText, analyzedTitle, analysisArray } = useSelector((state: any) => state.analyze);
   const { id } = router.query
@@ -36,7 +34,7 @@ function homecontent() {
           const request = await AnalyzerService.getAnalysisById(id);
           if (request.status) {
             dispatch(setTextAnalysis(request.data))
-            setsingledata(request.data)
+            setUuid(request?.data?.uuid)
             setShowLoader(false);
           } else {
             setShowLoader(false);
@@ -57,6 +55,7 @@ function homecontent() {
     }
     fetchSingleAnalysis()
   }, [id])
+
 
   return (
     <div className="bg-sirp-secondary2 h-[100%] mx-5 rounded-[1rem]">
@@ -83,7 +82,7 @@ function homecontent() {
               width={20}
               onClick={() => router.back()}
             />
-            <ActionIcons />
+            <ActionIcons docId={uuid} />
           </div>
 
           <div>

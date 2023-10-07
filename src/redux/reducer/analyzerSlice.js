@@ -8,6 +8,7 @@ const AnalyzerSlice = createSlice({
     analyzedText: '',
     analyzedTitle: '',
     analysisArray: [],
+    analyzedUuid: '',
   },
 
   reducers: {
@@ -25,6 +26,7 @@ const AnalyzerSlice = createSlice({
       state.analyzedText = action.payload.text;
       state.analysisArray = action.payload.analysisArray;
       state.analyzedTitle = action.payload.title;
+      state.analyzedUuid = action.payload.uuid;
     },
   }
 });

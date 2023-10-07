@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FileUploadSection from "./FileUploadSection";
 import { useDispatch, useSelector } from 'react-redux';
 import AnalyzerService from "../../../../services/Analyzer.service"
@@ -9,8 +9,8 @@ import { setTextAnalysis } from '../../../../redux/reducer/analyzerSlice';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import LoadingModal from './loadingModal';
 
-const FileUpload = () => {
-  const [formData, setFormData] = useState("");
+const FileUpload = ({exportData}) => {
+  const [formData, setFormData] = useState(exportData);
   const router = useRouter()
   const dispatch = useDispatch()
   const [file, setFile] = useState<File | null>(null);
@@ -20,6 +20,13 @@ const FileUpload = () => {
   const [showReader, setShowReader] = useState(false);
   const [fileName, setFileName] = useState('')
 
+  useEffect(() => {
+    // Update formData when exportData changes
+    setFormData(exportData);
+  }, [exportData]);
+
+
+  console.log(formData, 'formdatannnnn')
   const handleChange = (e) => {
     const value = e.target.value;
     setFormData(value);
