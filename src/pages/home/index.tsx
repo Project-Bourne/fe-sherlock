@@ -11,7 +11,7 @@ import { setTextandTitle } from "../../redux/reducer/analyzerSlice";
 import AuthService from "../../services/auth.service";
 import NotificationService from "../../services/notification.service";
 import { setUserInfo } from "../../redux/reducer/authReducer";
-import ActionIcons from "../../components/ui/ActionIcons";
+import ActionIcons from "./components/actionIcons/ActionIcons";
 import { Box, CircularProgress } from "@mui/material";
 import CustomModal from "../../components/ui/CustomModal";
 import Loader from '../../components/ui/Loader'
@@ -20,7 +20,8 @@ function Home() {
   const router = useRouter()
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true)
-  const { analyzedText, analyzedTitle, analysisArray } = useSelector((state: any) => state.analyze);
+  const [exportData, setExportData] = useState("");
+  const { analyzedText, analyzedTitle, analyzedUuid } = useSelector((state: any) => state.analyze);
 
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
   const handleMax = () => {
@@ -59,10 +60,7 @@ function Home() {
       console.log(err);
     }
   }, []);
-  const showTitle = false;
-  console.log(router, "i am router");
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <div className='pb-5'>
       {loading && (
         <CustomModal
@@ -75,7 +73,7 @@ function Home() {
         </CustomModal>
       )}
       {/* <h1 className="text-2xl pl-10 font-bold">Add Content</h1> */}
-      <FileUpload />
+      <FileUpload exportData={exportData}/>
       <div className="bg-sirp-secondary2 h-[100%] mx-5 rounded-[1rem]">
         <div className="flex md:justify-between  flex-wrap md:px-5 md:pt-3 ">
           {/* <div className=""> */}
@@ -113,7 +111,7 @@ function Home() {
 
         {analyzedText ?
           <div>
-            <ActionIcons />
+            <ActionIcons docId={analyzedUuid} />
             <div className="bg-white border mt-3 mx-10 rounded-[1rem]">
               {/* <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} /> */}
               {hideMeta == true && (
