@@ -46,7 +46,6 @@ function homecontent() {
           }
         } catch (error) {
           setShowLoader(false);
-          console.log(error);
         }
       } else {
         return

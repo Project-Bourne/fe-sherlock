@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import ActionIcons from '../../home/components/actionIcons/ActionIcon';
+import ActionIcons from '../../home/components/actionIcons/ActionIcons';
 import Image from 'next/image';
 import BreadCrum from '../../home/components/BreadCrum';
 import Min_and_Max_icon from '../../home/components/Min_Max_icon';
 import DummyText from '../../home/components/dummyText';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
 function homecontent() {
   const [hideMeta, setHideMeta] = useState(true);
+
+  const {  analyzedUuid } = useSelector(
+    (state: any) => state.analyze
+  );
   const handleMax = () => {
     setHideMeta(true);
   };
@@ -30,7 +35,7 @@ function homecontent() {
           <h1 className="text-2xl">Peter Duru</h1>
         </div>
         {/* all icons with modal  */}
-        <ActionIcons />
+        <ActionIcons docId={analyzedUuid} />
       </div>
       {/* breadcrum section  */}
       <BreadCrum />
