@@ -110,9 +110,6 @@ const [exportData, setExportData] = useState("");
     fetchData();
   }, [incoming]);
 
-  console.log(exportData);
-
-
   useEffect(() => {
     dispatch(
       setTextandTitle({
