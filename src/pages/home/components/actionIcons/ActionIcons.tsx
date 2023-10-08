@@ -15,7 +15,7 @@ const ActionIcons = ({ docId }) => {
       router.push(`http://192.81.213.226:36/documents/${id}&analyzer`);
     }
     if (to === "summarizer") {
-      router.push(`http://192.81.213.226:31/home/${id}&analyzer`);
+      router.push(`http://192.81.213.226:32/home/${id}&analyzer`);
     }
     if (to === "factcheck") {
       router.push(`http://192.81.213.226:34/home/${id}&analyzer`);
