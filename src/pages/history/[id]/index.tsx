@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import DummyText from "../../home/components/dummyText";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux';
-import AnalyzerService from "../../../services/Analyzer.service"
-import NotificationService from '../../../services/notification.service';
-import { setTextAnalysis } from "../../../redux/reducer/analyzerSlice";
+import Loader from "../../../components/ui/Loader";
+import DummyText from "../../home/components/dummyText";
+import AnalyzerService from "../../../services/Analyzer.service";
 import ActionIcons from "../../home/components/actionIcons/ActionIcons";
 import CustomModal from "../../../components/ui/CustomModal";
-import Loader from "../../../components/ui/Loader";
+import { setTextAnalysis } from "../../../redux/reducer/analyzerSlice";
+import NotificationService from "../../../services/notification.service";
 
 function homecontent() {
   const router = useRouter()

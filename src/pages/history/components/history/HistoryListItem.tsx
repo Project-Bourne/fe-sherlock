@@ -31,7 +31,7 @@ function ListItem({
     };
 
     const handleItemClick = () => {
-        router.push(`/history/${uuid}/page`);
+        router.push(`/history/${uuid}`);
     };
 
     const handleArchive = async (e, uuid) => {
