@@ -19,7 +19,7 @@ function Home() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const { analyzedText, analyzedTitle, analyzedUuid } = useSelector(
-    (state: any) => state.analyze
+    (state: any) => state?.analyze
   );
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
 const [exportData, setExportData] = useState("");
@@ -37,9 +37,6 @@ const [exportData, setExportData] = useState("");
         try {
           const [routeId, routeName] = incoming.split("&");
           let url;
-          console.log(routeName);
-          console.log(routeId);
-
           switch (routeName) {
             case "summarizer":
               url = `http://192.81.213.226:81/82/summary/${routeId}`;
@@ -121,7 +118,7 @@ const [exportData, setExportData] = useState("");
   useEffect(() => {
     setLoading(true);
     try {
-      AuthService.getUserViaAccessToken()
+      AuthService?.getUserViaAccessToken()
         .then((response) => {
           setLoading(false);
           if (response?.status) {
@@ -129,7 +126,7 @@ const [exportData, setExportData] = useState("");
           }
         })
         .catch((err) => {
-          NotificationService.error({
+          NotificationService?.error({
             message: "Error",
             addedText: "Could not fetch user data",
             position: "top-center",
