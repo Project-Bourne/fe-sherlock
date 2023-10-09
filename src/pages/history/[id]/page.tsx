@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import DummyText from "../home/components/dummyText";
+import DummyText from "../../home/components/dummyText";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux';
-import AnalyzerService from "../../services/Analyzer.service"
-import NotificationService from '../../services/notification.service';
-import { setTextAnalysis } from "../../redux/reducer/analyzerSlice";
-import ActionIcons from "../home/components/actionIcons/ActionIcons";
-import CustomModal from "../../components/ui/CustomModal";
-import Loader from "../../components/ui/Loader";
+import AnalyzerService from "../../../services/Analyzer.service"
+import NotificationService from '../../../services/notification.service';
+import { setTextAnalysis } from "../../../redux/reducer/analyzerSlice";
+import ActionIcons from "../../home/components/actionIcons/ActionIcons";
+import CustomModal from "../../../components/ui/CustomModal";
+import Loader from "../../../components/ui/Loader";
 
 function homecontent() {
   const router = useRouter()
@@ -75,7 +75,7 @@ function homecontent() {
 
           <div className=" mx-10 mt-[1rem] flex items-center justify-between">
             <Image
-              src={require("../../../public/icons/arrow-narrow-left 1.svg")}
+              src={require("../../../../public/icons/arrow-narrow-left 1.svg")}
               alt="documents"
               className="cursor-pointer pb-5"
               width={20}
