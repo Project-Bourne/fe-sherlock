@@ -1,6 +1,6 @@
 import { request } from "../hooks/api";
 
-class AnalyzerService {
+class AnalyzerService {x
   /**
    * Create a new Analysis.
    * @param {Object} data - The data of the new workspace.
