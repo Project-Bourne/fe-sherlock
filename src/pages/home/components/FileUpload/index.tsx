@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import AnalyzerService from "../../../../services/Analyzer.service"
 import { useRouter } from 'next/router';
 import NotificationService from '../../../../services/notification.service';
-import { setTextAnalysis } from '../../../../redux/reducer/analyzerSlice';
+import { setTextAnalysis, setAssessment } from '../../../../redux/reducer/analyzerSlice';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import LoadingModal from './loadingModal';
 
-const FileUpload = ({exportData}) => {
+const FileUpload = ({ exportData }) => {
   const [formData, setFormData] = useState(exportData);
   const router = useRouter()
   const dispatch = useDispatch()
@@ -45,6 +45,7 @@ const FileUpload = ({exportData}) => {
         console.log(request)
         if (request.status) {
           dispatch(setTextAnalysis(request.data))
+          dispatch(setAssessment(request.data.assessment))
           setShowLoader(false);
           setFormData('')
         } else {
@@ -62,6 +63,35 @@ const FileUpload = ({exportData}) => {
     }
 
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log('Enter key pressed:', formData);
+    let data = {
+      text: formData,
+    };
+    setShowLoader(true);
+    try {
+      const request = await AnalyzerService.analyze(data);
+      console.log(request)
+      if (request.status) {
+        dispatch(setTextAnalysis(request.data))
+        dispatch(setAssessment(request.data.assessment))
+        setShowLoader(false);
+        setFormData('')
+      } else {
+        setShowLoader(false);
+        router.push('/home');
+        NotificationService.error({
+          message: "Error!",
+          addedText: <p>{request.error}. please try again</p>,
+        });
+      }
+    } catch (error) {
+      setShowLoader(false);
+      console.log(error);
+    }
+  }
   const handleDeleteFile = () => {
     setFile(null);
     setIsFileUploaded(false);
@@ -211,7 +241,7 @@ const FileUpload = ({exportData}) => {
               {!isLoading && <div className="p-5 cursor-pointer flex w-[30%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
                 <span className='ml-3'>Analyze</span>
               </div>}
-              {isLoading && <div className="p-5 flex w-[35%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
+              {isLoading && <div onClick={handleSubmit} className="p-5 flex w-[35%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
                 <span> <Image
                   src={require(`../../../../../public/icons/circle.svg`)}
                   alt="upload image"
@@ -227,14 +257,7 @@ const FileUpload = ({exportData}) => {
           </div>
         ) :
         (<div className="flex flex-col items-end">
-          {/* <div
-            className="flex md:w-[15%] w-[50%] h-[3.5rem] rounded-[1rem] justify-center items-center bg-sirp-primary mb-3"
-            onClick={() => router.push("/home/content_id/crawled")} //navigate to Analyezed_content page
-            style={{ cursor: "pointer" }}
-          >
-            <span className="text-white">Run Analyzer</span>
-          </div> */}
-          {formData.length === 0 &&
+          {formData.length === 0 ?
             <div className='flex items-center mb-3'>
               <span className='text-grey-400 mr-2 text-sm text-sirp-primary'>{fileName}</span>
               <label htmlFor="file-input" className='px-4 py-1 rounded-lg' style={{ cursor: 'pointer', color: '#4582C4', backgroundColor: "white", border: '1px solid #4582C4' }}>
@@ -248,7 +271,9 @@ const FileUpload = ({exportData}) => {
                 accept=".pdf,.doc,.docx,.txt"
                 onChange={handleFileUpload}
               />
-            </div>}
+            </div> :
+            <div className="bg-sirp-primary text-white font-bold py-2 px-4  rounded-lg flex items-center mb-3 justify-center">Run Analyzer</div>
+          }
           <div className='flex align-middle w-full border-2 rounded-[1rem] border-[#E5E7EB]-500  border-dotted bg-[]'>
             <span className='flex align-middle justify-center mx-3'>
               <Image
@@ -258,9 +283,7 @@ const FileUpload = ({exportData}) => {
                 height={20}
                 priority
               />
-              {/* <span className='ml-3 font-light text-[#A1ADB5]'>Copy and paste link here</span> */}
             </span>
-            {/* <input placeholder='Copy and paste content text here' className='py-5 w-[95%]  outline-none' value={formData} onChange={handleChange} onKeyDown={handleKeyDown} /> */}
             <textarea
               placeholder="Copy and paste content text here"
               className={`w-[95%] outline-none focus:ring-0 pt-8 resize-y min-h-[6rem] max-h-[15rem] overflow-auto`}
@@ -278,33 +301,6 @@ const FileUpload = ({exportData}) => {
               />
             </span>
           </div>
-
-          {/* <div onDragOver={handleDragOver} onDrop={handleDrop} className='h-[30vh] mt-5 flex align-middle w-full justify-center border rounded-[30px] border-[#E5E7EB]'>
-            <div className='flex flex-col align-middle justify-center'>
-              <span className='flex align-middle justify-center mx-3'>
-                <Image
-                  className='flex align-middle justify-center'
-                  src={require(`../../../../../public/icons/cloud.svg`)}
-                  alt="upload image"
-                  width={25}
-                  height={25}
-                  priority
-                />
-              </span>
-              <span className='font-normal text-[#383E42]'>
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept=".txt,.rtf,.doc,.pdf,.svg,"
-                  className="hidden"
-                  onChange={handleFileUpload}
-                />
-                <label className='text-blue-400 cursor-pointer mr-5' htmlFor="file-upload">Upload a file
-                </label>
-                or drag and drop</span>
-              <span className='font-light  text-[#383E42]'>TXT, RFT, DOC, PDF upto 5MB</span>
-            </div>
-          </div> */}
         </div>
         )}
     </div>
