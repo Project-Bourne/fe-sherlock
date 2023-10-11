@@ -9,6 +9,7 @@ const AnalyzerSlice = createSlice({
     analyzedTitle: '',
     analysisArray: [],
     analyzedUuid: '',
+    assessment: ''
   },
 
   reducers: {
@@ -28,11 +29,15 @@ const AnalyzerSlice = createSlice({
       state.analyzedTitle = action.payload.title;
       state.analyzedUuid = action.payload.uuid;
     },
+    setAssessment: (state, action) => {
+      state.assessment = action.payload;
+    },
   }
 });
 
 export const {
   setHistory,
+  setAssessment,
   setTextAnalysis,
   setBookmark,
   setInputText,

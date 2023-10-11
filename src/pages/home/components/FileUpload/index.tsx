@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AnalyzerService from "../../../../services/Analyzer.service"
 import { useRouter } from 'next/router';
 import NotificationService from '../../../../services/notification.service';
-import { setTextAnalysis } from '../../../../redux/reducer/analyzerSlice';
+import { setTextAnalysis, setAssessment } from '../../../../redux/reducer/analyzerSlice';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import LoadingModal from './loadingModal';
 
@@ -45,6 +45,7 @@ const FileUpload = ({exportData}) => {
         console.log(request)
         if (request.status) {
           dispatch(setTextAnalysis(request.data))
+          dispatch(setAssessment(request.data.assessment))
           setShowLoader(false);
           setFormData('')
         } else {
