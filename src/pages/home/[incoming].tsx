@@ -22,7 +22,7 @@ function Home() {
     (state: any) => state?.analyze
   );
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
-const [exportData, setExportData] = useState("");
+  const [exportData, setExportData] = useState("");
   const { incoming } = router.query;
   const cookies = new Cookies();
   const token = cookies.get("deep-access");
@@ -45,6 +45,9 @@ const [exportData, setExportData] = useState("");
               url = `http://192.81.213.226:81/83/translation/${routeId}`;
               break;
             case "factcheck":
+              url = `http://192.81.213.226:81/84/fact/${routeId}`;
+              break;
+            case "irp":
               url = `http://192.81.213.226:81/84/fact/${routeId}`;
               break;
             case "deepchat":
@@ -79,10 +82,12 @@ const [exportData, setExportData] = useState("");
             case "factcheck":
               setExportData(data?.data?.confidence?.content);
               break;
-           
-              case 'summarizer':
-                setExportData(data?.data?.summaryArray[0].summary);
-                break;
+            case "irp":
+              setExportData(data?.data?.confidence?.content);
+              break;
+            case "summarizer":
+              setExportData(data?.data?.summaryArray[0].summary);
+              break;
             case "deepchat":
             case "interrogator":
             case "collab":
@@ -149,7 +154,7 @@ const [exportData, setExportData] = useState("");
         </CustomModal>
       )}
       {/* <h1 className="text-2xl pl-10 font-bold">Add Content</h1> */}
-      <FileUpload  exportData = {exportData}/>
+      <FileUpload exportData={exportData} />
       <div className="bg-sirp-secondary2 h-[100%] mx-5 rounded-[1rem]">
         {analyzedText ? (
           <div>
