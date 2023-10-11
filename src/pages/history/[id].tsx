@@ -152,8 +152,10 @@ function homecontent() {
 
           <CustomTabPanel value={value} index={1}>
             {assessment.length > 0 ?
-              <div className="my-4 px-4 py-2 bg-white border rounded-lg shadow-md leading-10">
-                {assessment}
+              <div className="my-4 bg-white border border-r-[10px] rounded-lg shadow-md border-sirp-primaryLess2 p-7">
+                {assessment.split('\n').map((paragraph, i)=> (
+                  <p key={i} className="text-[14px] text-justify   pl-10 pb-1 leading-8 break-normal "> {paragraph} </p>
+                ))}
               </div> :
               <div className="flex items-center justify-center flex-col gap-4 h-[60vh]">
                 <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
