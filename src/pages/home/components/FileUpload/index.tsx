@@ -241,7 +241,7 @@ const FileUpload = ({ exportData }) => {
               {!isLoading && <div className="p-5 cursor-pointer flex w-[30%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
                 <span className='ml-3'>Analyze</span>
               </div>}
-              {isLoading && <div onClick={handleSubmit} className="p-5 flex w-[35%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
+              {isLoading && <div className="p-5 flex w-[35%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
                 <span> <Image
                   src={require(`../../../../../public/icons/circle.svg`)}
                   alt="upload image"
@@ -257,7 +257,7 @@ const FileUpload = ({ exportData }) => {
           </div>
         ) :
         (<div className="flex flex-col items-end">
-          {formData.length === 0 ?
+          {formData.length < 1 ?
             <div className='flex items-center mb-3'>
               <span className='text-grey-400 mr-2 text-sm text-sirp-primary'>{fileName}</span>
               <label htmlFor="file-input" className='px-4 py-1 rounded-lg' style={{ cursor: 'pointer', color: '#4582C4', backgroundColor: "white", border: '1px solid #4582C4' }}>
@@ -272,7 +272,7 @@ const FileUpload = ({ exportData }) => {
                 onChange={handleFileUpload}
               />
             </div> :
-            <div className="bg-sirp-primary text-white font-bold py-2 px-4  rounded-lg flex items-center mb-3 justify-center">Run Analyzer</div>
+            <div className="bg-sirp-primary text-white font-bold py-2 px-4  rounded-lg flex items-center mb-3 justify-center cursor-pointer"  onClick={handleSubmit}>Run Analyzer</div>
           }
           <div className='flex align-middle w-full border-2 rounded-[1rem] border-[#E5E7EB]-500  border-dotted bg-[]'>
             <span className='flex align-middle justify-center mx-3'>
