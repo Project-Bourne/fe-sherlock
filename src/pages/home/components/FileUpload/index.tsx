@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import NotificationService from '../../../../services/notification.service';
 import { setTextAnalysis, setAssessment } from '../../../../redux/reducer/analyzerSlice';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
+import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
+import { useTruncate } from "../../../../components/custom-hooks";
 import LoadingModal from './loadingModal';
 
 const FileUpload = ({ exportData }) => {
@@ -19,7 +21,7 @@ const FileUpload = ({ exportData }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showReader, setShowReader] = useState(false);
   const [fileName, setFileName] = useState('')
-
+  const { userInfo } = useSelector((state: any) => state?.auth);
   useEffect(() => {
     // Update formData when exportData changes
     setFormData(exportData);
@@ -109,9 +111,14 @@ const FileUpload = ({ exportData }) => {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
       setFileName(selectedFile.name)
+      const fullName = `${userInfo.firstName} ${userInfo.lastName}`;
+      const userId = userInfo.uuid
+      if (!fullName || !userId || !selectedFile) return
       setIsFileUploaded(true)
       const formData = new FormData();
       formData.append('files', selectedFile);
+      formData.append("userId", userId);
+      formData.append("userName", fullName);
       setIsLoading(true);
       try {
         const res = await fetch('http://192.81.213.226:81/89/api/v1/uploads', {
@@ -259,8 +266,7 @@ const FileUpload = ({ exportData }) => {
         (<div className="flex flex-col items-end">
           {formData.length < 1 ?
             <div className='flex items-center mb-3'>
-              <span className='text-grey-400 mr-2 text-sm text-sirp-primary'>{fileName}</span>
-              <label htmlFor="file-input" className='px-4 py-1 rounded-lg' style={{ cursor: 'pointer', color: '#4582C4', backgroundColor: "white", border: '1px solid #4582C4' }}>
+              <label htmlFor="file-input" className='px-4 py-1 rounded-lg w-[150px]' style={{ cursor: 'pointer', color: '#4582C4', backgroundColor: "white", border: '1px solid #4582C4' }}>
                 <DriveFolderUploadIcon style={{ color: '#4582C4', cursor: 'pointer' }} /> Upload File
               </label>
 
@@ -272,7 +278,7 @@ const FileUpload = ({ exportData }) => {
                 onChange={handleFileUpload}
               />
             </div> :
-            <div className="bg-sirp-primary text-white font-bold py-2 px-4  rounded-lg flex items-center mb-3 justify-center cursor-pointer"  onClick={handleSubmit}>Run Analyzer</div>
+            <div className="bg-sirp-primary text-white font-bold py-2 px-4  rounded-lg flex items-center mb-3 justify-center cursor-pointer" onClick={handleSubmit}>Run Analyzer</div>
           }
           <div className='flex align-middle w-full border-2 rounded-[1rem] border-[#E5E7EB]-500  border-dotted bg-[]'>
             <span className='flex align-middle justify-center mx-3'>

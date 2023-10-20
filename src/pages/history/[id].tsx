@@ -151,9 +151,9 @@ function homecontent() {
           </div>
 
           <CustomTabPanel value={value} index={1}>
-            {assessment.length > 0 ?
+            {assessment?.length > 0 ?
               <div className="my-4 bg-white border border-r-[10px] rounded-lg shadow-md border-sirp-primaryLess2 p-7">
-                {assessment.split('\n').map((paragraph, i)=> (
+                {assessment?.split('\n').map((paragraph, i)=> (
                   <p key={i} className="text-[14px] text-justify   pl-10 pb-1 leading-8 break-normal "> {paragraph} </p>
                 ))}
               </div> :
