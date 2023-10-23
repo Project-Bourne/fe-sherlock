@@ -294,7 +294,7 @@ const FileUpload = ({ exportData }) => {
               className={`w-[95%] p-5`}
               value={formData}
               maxRows={20}
-              style={{ border: 'none', outline: 'none' }} // Add this inline style
+              style={{ border: 'none', outline: 'none' }}
             />
             <span className='flex align-middle justify-center mx-3' onClick={handleClear}>
               <Image
