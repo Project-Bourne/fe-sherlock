@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const AnalyzerSlice = createSlice({
   name: 'analyzer',
   initialState: {
-    history: [],
+    history: null,
     bookmark: [],
     analyzedText: '',
     analyzedTitle: '',
@@ -17,7 +17,7 @@ const AnalyzerSlice = createSlice({
       state.history = action.payload;
     },
     setBookmark: (state) => {
-      state.bookmark = state.history.filter(el => el.bookmark);
+      state.bookmark = state.history.summary.filter(el => el.bookmark);
     },
     setTextandTitle:(state, action) => {
       state.analyzedText = action.payload.text;
@@ -32,6 +32,12 @@ const AnalyzerSlice = createSlice({
     setAssessment: (state, action) => {
       state.assessment = action.payload;
     },
+    updatePagination: (state, action) => {
+      state.history = {
+        ...state.history,
+        ...action.payload,
+      };
+    },
   }
 });
 
@@ -41,7 +47,7 @@ export const {
   setTextAnalysis,
   setBookmark,
   setInputText,
-  setTextandTitle
+  setTextandTitle, updatePagination
 } = AnalyzerSlice.actions;
 
 export default AnalyzerSlice.reducer;

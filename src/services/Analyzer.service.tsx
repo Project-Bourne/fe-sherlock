@@ -121,10 +121,10 @@ class AnalyzerService {x
    * @returns {Promise<Object>} - The response data from the server.
    */
 
-  static async getAnalyzerHistory() {
+  static async getAnalyzerHistory(page=1) {
     try {
       const response = await request(
-        `analysis/user`,
+        `analysis/user?page=${page}`,
         "GET",
         {},
         true,
