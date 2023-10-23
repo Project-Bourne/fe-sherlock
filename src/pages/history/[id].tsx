@@ -115,17 +115,11 @@ function homecontent() {
           </Box>
           <div className="w-full h-full">
             <CustomTabPanel value={value} index={0}>
-              <div>          <div className=" mx-10 pt-[1.5rem] flex items-center justify-between">
-                {/* <Image
-              src={require("../../../public/icons/arrow-narrow-left 1.svg")}
-              alt="documents"
-              className="cursor-pointer pb-5"
-              width={20}
-              onClick={() => router.back()}
-            /> */}
-                <div></div>
-                <ActionIcons docId={uuid} />
-              </div>
+              <div>
+                <div className=" mx-10 pt-[1.5rem] flex items-center justify-between">
+                  <div></div>
+                  <ActionIcons docId={uuid} />
+                </div>
 
                 <div>
                   <div className="bg-white border my-[1rem] mx-10 rounded-[1rem]">
@@ -153,7 +147,7 @@ function homecontent() {
           <CustomTabPanel value={value} index={1}>
             {assessment?.length > 0 ?
               <div className="my-4 bg-white border border-r-[10px] rounded-lg shadow-md border-sirp-primaryLess2 p-7">
-                {assessment?.split('\n').map((paragraph, i)=> (
+                {assessment?.split('\n').map((paragraph, i) => (
                   <p key={i} className="text-[14px] text-justify   pl-10 pb-1 leading-8 break-normal "> {paragraph} </p>
                 ))}
               </div> :

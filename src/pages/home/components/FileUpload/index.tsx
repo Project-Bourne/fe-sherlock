@@ -7,9 +7,9 @@ import { useRouter } from 'next/router';
 import NotificationService from '../../../../services/notification.service';
 import { setTextAnalysis, setAssessment } from '../../../../redux/reducer/analyzerSlice';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
-import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
-import { useTruncate } from "../../../../components/custom-hooks";
 import LoadingModal from './loadingModal';
+import TextareaAutosize from 'react-textarea-autosize';
+
 
 const FileUpload = ({ exportData }) => {
   const [formData, setFormData] = useState(exportData);
@@ -28,7 +28,7 @@ const FileUpload = ({ exportData }) => {
   }, [exportData]);
 
 
-  console.log(formData, 'formdatannnnn')
+  // console.log(formData, 'formdatannnnn')
   const handleChange = (e) => {
     const value = e.target.value;
     setFormData(value);
@@ -100,9 +100,6 @@ const FileUpload = ({ exportData }) => {
   };
   const handleTextareaChange = (e) => {
     setFormData(e.target.value);
-    // Automatically adjust the textarea's height
-    e.target.style.height = 'auto';
-    e.target.style.height = e.target.scrollHeight + 'px';
   };
 
   const handleFileUpload = async (event) => {
@@ -280,7 +277,7 @@ const FileUpload = ({ exportData }) => {
             </div> :
             <div className="bg-sirp-primary text-white font-bold py-2 px-4  rounded-lg flex items-center mb-3 justify-center cursor-pointer" onClick={handleSubmit}>Run Analyzer</div>
           }
-          <div className='flex align-middle w-full border-2 rounded-[1rem] border-[#E5E7EB]-500  border-dotted bg-[]'>
+          <div className='flex align-middle w-full h-[auto] border-2 rounded-[1rem] border-[#E5E7EB]-500  border-dotted bg-[]'>
             <span className='flex align-middle justify-center mx-3'>
               <Image
                 src={require(`../../../../../public/icons/link.svg`)}
@@ -290,12 +287,14 @@ const FileUpload = ({ exportData }) => {
                 priority
               />
             </span>
-            <textarea
+            <TextareaAutosize
+              minRows={1}
               placeholder="Copy and paste content text here"
-              className={`w-[95%] outline-none focus:ring-0 pt-8 resize-y min-h-[6rem] max-h-[15rem] overflow-auto`}
-              value={formData}
-              onKeyDown={handleKeyDown}
               onChange={handleTextareaChange}
+              className={`w-[95%] p-5`}
+              value={formData}
+              maxRows={20}
+              style={{ border: 'none', outline: 'none' }} // Add this inline style
             />
             <span className='flex align-middle justify-center mx-3' onClick={handleClear}>
               <Image
