@@ -9,11 +9,13 @@ import { setTextAnalysis, setAssessment } from '../../../../redux/reducer/analyz
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import LoadingModal from './loadingModal';
 import TextareaAutosize from 'react-textarea-autosize';
+import { Cookies } from "react-cookie";
 
 
 const FileUpload = ({ exportData }) => {
   const [formData, setFormData] = useState(exportData);
   const router = useRouter()
+  const cookies = new Cookies();
   const dispatch = useDispatch()
   const [file, setFile] = useState<File | null>(null);
   const [showLoader, setShowLoader] = useState(false)
@@ -122,6 +124,14 @@ const FileUpload = ({ exportData }) => {
           method: 'POST',
           body: formData,
         })
+        if (res.status === 403) {
+          // Clear the cookie
+          cookies.remove("deep-access");
+
+          // Redirect to the login page
+          window.location.href = "http://192.81.213.226:30/auth/login";
+          return "Access forbidden. Redirecting to login page.";
+        } 
         const response = await res.json();
         console.log(response, 'response')
         if (response.status) {

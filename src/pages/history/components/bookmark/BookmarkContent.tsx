@@ -9,7 +9,7 @@ function BookmarkContent() {
     const { bookmark } = useSelector((state: any) => state.analyze)
     return (
         <div>
-            {bookmark.length > 0 ? (
+            {bookmark?.length > 0 ? (
                 <>
                     {bookmark?.map(item => {
                         return (

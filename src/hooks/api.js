@@ -67,7 +67,6 @@ export async function request(url, method, payload, token, text, form) {
         if (res.status === 403) {
           // Clear the cookie
           cookies.remove("deep-access");
-
           // Redirect to the login page
           window.location.href = "http://192.81.213.226:30/auth/login";
           return "Access forbidden. Redirecting to login page.";

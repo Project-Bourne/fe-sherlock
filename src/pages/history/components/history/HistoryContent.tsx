@@ -8,14 +8,13 @@ import AnalyzerService from '../../../../services/Analyzer.service';
 import { CircularProgress, Pagination } from '@mui/material';
 
 function HistoryContent() {
-    const { history } = useSelector((state: any) => state.analyze)
-    const itemsPerPage = history.itemsPerPage || 10;
+    const { history } = useSelector((state: any) => state?.analyze)
+    const itemsPerPage = history?.itemsPerPage || 10;
     const [loading, setLoading] = useState(false)
-    const [currentPage, setCurrentPage] = useState(history.currentPage || 1);
+    const [currentPage, setCurrentPage] = useState(history?.currentPage || 1);
     const dispatch = useDispatch()
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    // let displayedHistory = history.translate?.slice(startIndex, endIndex);
     const handlePageChange = async (event, page) => {
         setLoading(true)
         try {
