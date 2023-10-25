@@ -7,6 +7,7 @@ import DropdownItems from "./DropdownItems";
 import CustomModal from "../../ui/CustomModal";
 import { logout } from "../../../redux/reducer/authReducer";
 import AuthService from "../../../services/auth.service";
+import dashboard from '../../../../public/icons/dashboard.svg';
 import { useTruncate } from "../../custom-hooks";
 import NotificationService from "../../../services/notification.service";
 
@@ -66,17 +67,30 @@ function RightComp() {
         />
       </div> */}
 
-      <div className={`${styles.view1} hidden md:flex relative`}>
-        <Image
-          src={require("../../../../public/icons/dashboard.svg")}
-          alt="dashboard"
-          width={20}
-          height={20}
-          className="self-center"
+      <div className="relative">
+        <div
+          className="grid justify-center mt-3.5"
           onClick={handleDashboardToggle}
-          style={{ alignSelf: "center" }}
-          priority
-        />
+        >
+          <div className={`${styles.view1} hidden md:flex`}>
+            <Image
+              src={dashboard}
+              alt="dashboard"
+              width={20}
+              height={20}
+              className="self-center"
+              style={{ alignSelf: 'center' }}
+              id="dashboard"
+              priority
+            />
+          </div>
+          <label
+            className="text-[12px] mx-2 hover:cursor-pointer"
+            htmlFor="dashboard"
+          >
+            Menu
+          </label>
+        </div>
         {toggleDashboard && <DropdownItems />}
       </div>
 

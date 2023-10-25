@@ -68,6 +68,9 @@ function Home() {
             case "collab":
               url = `http://192.81.213.226:81/86/api/v1/doc/${routeId}`;
               break;
+            case 'interrogator':
+               url = `http://192.81.213.226:81/87/interrogation/message/${routeId}`;
+            break;
             default:
               throw new Error("Invalid routeName");
           }
@@ -95,7 +98,9 @@ function Home() {
               setExportData(data?.data?.summaryArray[0].summary);
               break;
             case "deepchat":
-            case "interrogator":
+            case 'interrogator':
+              setExportData(data?.data?.answer);
+              break;
             case "collab":
               const  collabData: string[] = data?.data?.data?.ops.map((el) => {
                 return el.insert
