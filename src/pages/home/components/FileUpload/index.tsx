@@ -16,6 +16,10 @@ const FileUpload = ({ exportData }) => {
   const [formData, setFormData] = useState(exportData);
   const router = useRouter()
   const cookies = new Cookies();
+  let access = "";
+  if (typeof window !== "undefined") {
+    access = cookies.get("deep-access");
+  }
   const dispatch = useDispatch()
   const [file, setFile] = useState<File | null>(null);
   const [showLoader, setShowLoader] = useState(false)
@@ -123,15 +127,17 @@ const FileUpload = ({ exportData }) => {
         const res = await fetch('http://192.81.213.226:81/89/api/v1/uploads', {
           method: 'POST',
           body: formData,
+          headers: {
+            "deep-token": access,
+          }
         })
         if (res.status === 403) {
-          // Clear the cookie
           cookies.remove("deep-access");
 
           // Redirect to the login page
           window.location.href = "http://192.81.213.226:30/auth/login";
           return "Access forbidden. Redirecting to login page.";
-        } 
+        }
         const response = await res.json();
         console.log(response, 'response')
         if (response.status) {
