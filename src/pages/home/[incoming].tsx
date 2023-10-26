@@ -89,10 +89,10 @@ function Home() {
               setExportData(data?.data?.textTranslation);
               break;
             case "factcheck":
-              setExportData(data?.data?.confidence?.content);
+              setExportData(data?.data?.confidence?.content5wh);
               break;
             case "irp":
-              setExportData(data?.data?.confidence?.content);
+              setExportData(data?.data?.confidence?.content5wh);
               break;
             case "summarizer":
               setExportData(data?.data?.summaryArray[0].summary);
