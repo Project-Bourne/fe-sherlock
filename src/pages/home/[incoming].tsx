@@ -63,7 +63,7 @@ function Home() {
               url = `http://192.81.213.226:81/81/analysis/${routeId}`;
               break;
             case "interrogator":
-              url = `http://196700:h/${routeId}`;
+              url = `http://192.81.213.226:81/87/interrogation/message/${routeId}`;
               break;
             case "collab":
               url = `http://192.81.213.226:81/86/api/v1/doc/${routeId}`;

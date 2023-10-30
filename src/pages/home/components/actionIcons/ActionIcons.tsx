@@ -24,14 +24,14 @@ const ActionIcons = ({ docId }) => {
       router?.push(`http://192.81.213.226:35/home/${id}&analyser`);
     }
     if (to === "interrogator") {
-      router?.push(`http://192.81.213.226:37/home/${id}&analyser`);
+      router?.push(`http://192.81.213.226:82/home/${id}&analyser`);
     }
     if (to === "translator") {
       router?.push(`http://192.81.213.226:33/home/${id}&analyser`);
     }
-    if (to === "interrogator") {
-      router?.push(`http://192.81.213.226:82/home/query/${id}&analyser`);
-    }
+    // if (to === "interrogator") {
+    //   router?.push(`http://192.81.213.226:82/home/query/${id}&analyser`);
+    // }
     
   };
 
