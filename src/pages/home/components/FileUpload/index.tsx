@@ -58,7 +58,7 @@ const FileUpload = ({ exportData }) => {
           setFormData('')
         } else {
           setShowLoader(false);
-          router.push('/home');
+          router.replace('/home');
           NotificationService.error({
             message: "Error!",
             addedText: <p>{request.error}. please try again</p>,
@@ -89,7 +89,7 @@ const FileUpload = ({ exportData }) => {
         setFormData('')
       } else {
         setShowLoader(false);
-        router.push('/home');
+        router.replace('/home');
         NotificationService.error({
           message: "Error!",
           addedText: <p>{request.error}. please try again</p>,
@@ -135,7 +135,7 @@ const FileUpload = ({ exportData }) => {
           cookies.remove("deep-access");
 
           // Redirect to the login page
-          window.location.href = "http://192.81.213.226:30/auth/login";
+          window.location.replace("http://192.81.213.226:30/auth/login");
           return "Access forbidden. Redirecting to login page.";
         }
         const response = await res.json();
@@ -151,12 +151,12 @@ const FileUpload = ({ exportData }) => {
             setIsLoading(false);
             setFormData("")
             setIsFileUploaded(false)
-            // router.push('/home/analyzed');
+            // router.replace('/home/analyzed');
           } else {
             setIsLoading(false);
             setIsFileUploaded(false)
             console.log(newResponse, 'new')
-            // router.push('/home');
+            // router.replace('/home');
             NotificationService.error({
               message: "Error!",
               addedText: <p>{newResponse.error}. please try again</p>,

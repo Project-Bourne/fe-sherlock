@@ -47,10 +47,10 @@ const FileUploadSection = ({ file, handleDeleteFile, isLoading }) => {
         {!isLoading && (
           <div
             className="flex md:w-[50%] w-[100%] align-middle justify-end  mt-4"
-            onClick={() => router.push("/home/analyzed")}
+            onClick={() => router.replace("/home/analyzed")}
             style={{ cursor: "pointer" }}
           >
-            <div  className="p-5 flex w-[35%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
+            <div className="p-5 flex w-[35%] align-middle justify-center bg-[#4582C4]  border-2 text-white rounded-[15px] font-extrabold">
               <span> <Image
                 src={require(`../../../../../public/icons/circle.svg`)}
                 alt="upload image"

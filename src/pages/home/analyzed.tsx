@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux';
 
 function homecontent() {
-    const router = useRouter()
-    const dispatch = useDispatch();
-    const { analyzedText, analyzedTitle, analysisArray } = useSelector((state:any) => state.analyze);
+  const router = useRouter()
+  const dispatch = useDispatch();
+  const { analyzedText, analyzedTitle, analysisArray } = useSelector((state: any) => state.analyze);
 
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
   const handleMax = () => {
@@ -37,7 +37,7 @@ function homecontent() {
         {/* run analyze buuton */}
         <div
           className="flex md:w-[15%] w-[50%] h-[3.5rem] rounded-[1rem] justify-center items-center bg-sirp-primary"
-          onClick={() => router.push("/home/content_id/crawled")} //navigate to Analyezed_content page
+          onClick={() => router.replace("/home/content_id/crawled")} //navigate to Analyezed_content page
           style={{ cursor: "pointer" }}
         >
           <span className="text-white">Run Analyzer</span>
@@ -54,7 +54,7 @@ function homecontent() {
           <div className="pl-5 pb-5 mt-[5rem]">
             <p className="text-md text-gray-500">Title</p>
             <h1 className="md:text-3xl text-[14px]">
-             {analyzedTitle}
+              {analyzedTitle}
             </h1>
           </div>
         )}

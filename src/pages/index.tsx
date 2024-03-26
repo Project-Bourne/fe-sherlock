@@ -11,14 +11,14 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push(
+    router.replace(
       {
         pathname: `/home`,
       },
       undefined,
       { shallow: true }
     )
-  }, );
+  },);
 
   return (
     <>

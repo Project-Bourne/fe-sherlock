@@ -32,7 +32,7 @@ function BookmarkListItem({
     };
 
     const handleItemClick = () => {
-        router.push(`/history/${uuid}`);
+        router.replace(`/history/${uuid}`);
     };
 
     const handleArchive = async (e, uuid) => {
@@ -72,18 +72,18 @@ function BookmarkListItem({
             <div className="flex gap-3 items-center  hover:text-gray-400">
                 {/* Save icon */}
                 <Tooltip title={isArchived ? "Remove from bookmark" : "Save to bookmark"}>
-                <Image
-                    src={
-                        isArchived
-                            ? require(`../../../../../public/icons/on.saved.svg`)
-                            : require(`../../../../../public/icons/saved.svg`)
-                    }
-                    alt="documents"
-                    className="cursor-pointer w-4 h-4"
-                    width={10}
-                    height={10}
-                    onClick={(e) => handleArchive(e, translateid)}
-                />
+                    <Image
+                        src={
+                            isArchived
+                                ? require(`../../../../../public/icons/on.saved.svg`)
+                                : require(`../../../../../public/icons/saved.svg`)
+                        }
+                        alt="documents"
+                        className="cursor-pointer w-4 h-4"
+                        width={10}
+                        height={10}
+                        onClick={(e) => handleArchive(e, translateid)}
+                    />
                 </Tooltip>
                 {/* name */}
                 <p className="text-sirp-black-500 ml-2 md:w-[20rem] hover:text-gray-400">

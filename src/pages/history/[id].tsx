@@ -44,7 +44,7 @@ function homecontent() {
             setShowLoader(false);
           } else {
             setShowLoader(false);
-            router.push('/history');
+            router.replace('/history');
             NotificationService.error({
               message: "Error!",
               addedText: <p>{request.message}. please try again</p>,

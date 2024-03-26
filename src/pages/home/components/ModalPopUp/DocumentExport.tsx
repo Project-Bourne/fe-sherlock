@@ -13,7 +13,7 @@ function DocumentExport() {
     success();
   };
   const navigateToDashboard = () => {
-    window.location.href = '../../home/dashboard/homedashboard';
+    window.location.replace('../../home/dashboard/homedashboard');
   };
 
   return (

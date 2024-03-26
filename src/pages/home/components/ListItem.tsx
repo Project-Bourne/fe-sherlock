@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 function ListItem({ name, desc, message, time, id }: ListItemModels) {
   const router = useRouter();
   const handleClick = () => {
-    router.push(`/home/analyedcontent/${id}`);
+    router.replace(`/home/analyedcontent/${id}`);
   };
 
   return (

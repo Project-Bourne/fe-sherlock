@@ -21,12 +21,12 @@ const TabComp = ({ item, index, route }: TabCompType) => {
   // States
   const [path, setPath] = useState<string>('');
   // Functions
-  const updatePath:any = (e: any) => {
+  const updatePath: any = (e: any) => {
     // e.preventDefault();
     const newPath = item.route || '';
     setPath(newPath);
     // console.log(route, path, route, `${path}` == `${route}`, )
-    router.push(
+    router.replace(
       {
         pathname: item.route
       },
