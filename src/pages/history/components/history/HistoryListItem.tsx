@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { fetchData } from '../../../../hooks/FetchHistory'
 import AnalyzerService from '../../../../services/Analyzer.service';
 import { Tooltip } from '@mui/material';
+import NotificationService from '../../../../services/notification.service';
 
 function ListItem({
     uuid,
@@ -39,8 +40,14 @@ function ListItem({
         try {
             await AnalyzerService.bookMarkAnalysis(uuid)
             fetchData(dispatch)
+            NotificationService.success({
+                message: 'Operation successful'
+            })
         }
         catch (error) {
+            NotificationService.error({
+                message: 'Operation unsuccessful'
+            })
             console.log(error)
         }
     };
@@ -51,7 +58,13 @@ function ListItem({
             await AnalyzerService.deleteAnalysis(uuid)
             await AnalyzerService.getAnalyzerHistory()
             fetchData(dispatch)
+            NotificationService.success({
+                message: 'Operation Successful'
+            })
         } catch (error) {
+            NotificationService.error({
+                message: 'Operation Unsuccessful'
+            })
             console.log(error)
         }
 

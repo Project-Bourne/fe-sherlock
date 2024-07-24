@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { fetchData } from '../../../../hooks/FetchHistory'
 import AnalyzerService from '../../../../services/Analyzer.service';
 import { Tooltip } from '@mui/material';
+import NotificationService from '../../../../services/notification.service';
 
 function BookmarkListItem({
     uuid,
@@ -40,8 +41,14 @@ function BookmarkListItem({
         try {
             await AnalyzerService.bookMarkAnalysis(uuid)
             fetchData(dispatch)
+            NotificationService.success({
+                message: 'Operation successful'
+            })
         } catch (error) {
             console.log(error)
+            NotificationService.error({
+                message: 'Operation unsuccessful'
+            })
         }
     };
 
@@ -51,8 +58,14 @@ function BookmarkListItem({
             await AnalyzerService.deleteAnalysis(uuid)
             dispatch(setBookmark());
             fetchData(dispatch)
+            NotificationService.success({
+                message: 'Operation successful'
+            })
         } catch (error) {
             console.log(error)
+            NotificationService.error({
+                message: 'Operation unsuccessful'
+            })
         }
     };
 
