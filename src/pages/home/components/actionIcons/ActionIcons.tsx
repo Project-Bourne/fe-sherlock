@@ -13,6 +13,7 @@ const ActionIcons = ({ docId }) => {
   const handleExport = (id: string, to: string) => {
     if (to === "collab") {
       router?.push(`http://192.81.213.226:36/document/${id}&analyser`);
+      // router?.push(`http://localhost:3001/document/${id}&analyser`);
     }
     if (to === "summarizer") {
       router?.push(`http://192.81.213.226:32/home/${id}&analyser`);
@@ -25,9 +26,11 @@ const ActionIcons = ({ docId }) => {
     }
     if (to === "interrogator") {
       router?.push(`http://192.81.213.226:82/home/${id}&analyser`);
+      // router?.push(`http://localhost:3001/home/query/${id}&analyser`);
     }
     if (to === "translator") {
       router?.push(`http://192.81.213.226:33/home/${id}&analyser`);
+      // router?.push(`http://localhost:3001/home/${id}&analyser`);
     }
     // if (to === "interrogator") {
     //   router?.push(`http://192.81.213.226:82/home/query/${id}&analyser`);

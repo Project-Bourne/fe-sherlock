@@ -17,7 +17,8 @@ const AnalyzerSlice = createSlice({
       state.history = action.payload;
     },
     setBookmark: (state) => {
-      state.bookmark = state?.history?.summary.filter(el => el.bookmark);
+      // console.log('State: ', state?.bookmark);
+      state.bookmark = state?.history?.summary?.filter(el => el.bookmark) || [];
     },
     setTextandTitle:(state, action) => {
       state.analyzedText = action.payload.text;
