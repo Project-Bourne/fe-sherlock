@@ -87,7 +87,7 @@ export async function request(url, method, payload, token, text, form) {
 }
 
 // let API_USER_URL2 = "http://192.81.213.226:81/80/";
-let API_USER_URL2 = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}/80`;
+let API_USER_URL2 = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}/80/`;
 export async function request2(url, method, payload, token, text, form) {
   if (form === true) {
     requestHeader["Content-Type"] = "multipart/form-data";
