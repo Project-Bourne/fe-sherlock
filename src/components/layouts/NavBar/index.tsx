@@ -3,14 +3,17 @@ import React from "react";
 import NavBarItem from "./NavBarItem";
 import { NavBarContents } from "../../../utils/constants";
 import { useRouter } from "next/router";
-import disclaimerIcon from '../../../../public/icons/toast.warn.svg';
+// import disclaimerIcon from '../../../../public/icons/toast.warn.svg';
+
+const disclaimerIcon = require("../../../../public/icons/toast.warn.svg");
 
 function NavBar() {
     const router = useRouter();
     return (
         <div className="w-[15vw] md:w-[20vw] h-full border-3 border-r bg-white px-3 py-10 md:p-10 fixed z-[20]">
             <div className="flex flex-row items-center mb-20 cursor-pointer" onClick={() => {
-                router.replace("http://192.81.213.226:30");
+                // router.replace("http://192.81.213.226:30");
+                router.replace(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}`);
             }}>
                 <Image
                     src={require("../../../../public/svg/logo.svg")}

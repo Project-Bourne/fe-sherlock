@@ -7,9 +7,11 @@ import DropdownItems from "./DropdownItems";
 import CustomModal from "../../ui/CustomModal";
 import { logout } from "../../../redux/reducer/authReducer";
 import AuthService from "../../../services/auth.service";
-import dashboard from '../../../../public/icons/dashboard.svg';
+// import dashboard from '../../../../public/icons/dashboard.svg';
 import { useTruncate } from "../../custom-hooks";
 import NotificationService from "../../../services/notification.service";
+
+const dashboard = require("../../../../public/icons/dashboard.svg");
 
 function RightComp() {
   const [, removeCookie] = useCookies(["deep-access"]);
@@ -27,7 +29,8 @@ function RightComp() {
     localStorage.clear();
 
     removeCookie("deep-access", { path: "/" });
-    router.replace("http://192.81.213.226:30/auth/login");
+    // router.replace("http://192.81.213.226:30/auth/login");
+    router.replace(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}/auth/login`);
 
     NotificationService.success({
       message: "Logout operation successful!",

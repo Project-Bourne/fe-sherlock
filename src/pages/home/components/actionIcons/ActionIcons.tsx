@@ -7,33 +7,37 @@ import { useSelector } from "react-redux";
 const ActionIcons = ({ docId }) => {
   const router = useRouter();
   const { userInfo } = useSelector((state: any) => state?.auth);
+  const BASE_URL = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}`;
 
   const permissions = userInfo?.role?.permissions;
 
   const handleExport = (id: string, to: string) => {
     if (to === "collab") {
-      router?.push(`http://192.81.213.226:36/document/${id}&analyser`);
       // router?.push(`http://localhost:3001/document/${id}&analyser`);
+      router?.push(`${BASE_URL}:${process.env.NEXT_PUBLIC_COLLAB_PORT}/document/${id}&analyser`);
     }
     if (to === "summarizer") {
-      router?.push(`http://192.81.213.226:32/home/${id}&analyser`);
+      // router?.push(`http://192.81.213.226:32/home/${id}&analyser`);
+      router?.push(`${BASE_URL}:${process.env.NEXT_PUBLIC_SUMMARIZER_PORT}/home/${id}&analyser`);
     }
     if (to === "factcheck") {
-      router?.push(`http://192.81.213.226:34/home/${id}&analyser`);
+      // router?.push(`http://192.81.213.226:34/home/${id}&analyser`);
+      router?.push(`${BASE_URL}:${process.env.NEXT_PUBLIC_FACT_CHECKER_PORT}/home/${id}&analyser`);
     }
     if (to === "deepchat") {
-      router?.push(`http://192.81.213.226:35/home/${id}&analyser`);
+      // router?.push(`http://192.81.213.226:35/home/${id}&analyser`);
+      router?.push(`${BASE_URL}:${process.env.NEXT_PUBLIC_DEEP_CHAT_PORT}/home/${id}&analyser`);
     }
     if (to === "interrogator") {
-      router?.push(`http://192.81.213.226:82/home/${id}&analyser`);
-      // router?.push(`http://localhost:3001/home/query/${id}&analyser`);
+       // router?.push(`http://localhost:3001/home/query/${id}&analyser`);
+      router?.push(`${BASE_URL}:${process.env.NEXT_PUBLIC_INTERROGATOR_PORT}/home/query/${id}&analyser`);
     }
     if (to === "translator") {
-      router?.push(`http://192.81.213.226:33/home/${id}&analyser`);
-      // router?.push(`http://localhost:3001/home/${id}&analyser`);
+      // // router?.push(`http://localhost:3001/home/${id}&analyser`);
+      router?.push(`${BASE_URL}:${process.env.NEXT_PUBLIC_TRANSLATOR_PORT}/home/${id}&analyser`);
     }
     // if (to === "interrogator") {
-    //   router?.push(`http://192.81.213.226:82/home/query/${id}&analyser`);
+    //   router?.push(`http://localhost:3001/home/query/${id}&analyser`);
     // }
     
   };
