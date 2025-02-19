@@ -124,7 +124,7 @@ class AnalyzerService {x
   static async getAnalyzerHistory(page=1) {
     try {
       const response = await request(
-        `analysis/user?page=${page}`,
+        `/analysis/user?page=${page}`,
         "GET",
         {},
         true,
