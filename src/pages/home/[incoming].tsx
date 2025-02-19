@@ -66,7 +66,7 @@ function Home() {
               url = `${BASE_URL}/${process.env.NEXT_PUBLIC_DEEP_CHAT_API_ROUTE}/deepchat/${routeId}`;
               break;
             case "analyzer":
-              // url = `http://192.81.213.226:81/81/analysis/${routeId}`;
+              // url = `http://192.81.213.226:810/analysis/${routeId}`;
               url = `${BASE_URL}/${process.env.NEXT_PUBLIC_ANALYZER_API_ROUTE}/analysis/${routeId}`;
               break;
             case "interrogator":
