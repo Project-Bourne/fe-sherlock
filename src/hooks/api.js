@@ -28,8 +28,9 @@ export const requestHeader = {
  *
  */
 
-// let API_USER_URL = "http://192.81.213.226:81/80/";
-let API_USER_URL = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/${process.env.NEXT_PUBLIC_ANALYZER_API_ROUTE}/`;
+// let API_USER_URL = "http://192.81.213.226:81/81/";
+let API_USER_URL = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/${process.env.NEXT_PUBLIC_IRP_API_ROUTE}/`;
+let ANALYZER_API_USER_URL = `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_API_PORT}/${process.env.NEXT_PUBLIC_ANALYZER_API_ROUTE}/`;
 
 export async function request(url, method, payload, token, text, form) {
   requestHeader["Content-Type"] =

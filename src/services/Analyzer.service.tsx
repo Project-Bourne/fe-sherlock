@@ -1,4 +1,4 @@
-import { request } from "../hooks/api";
+import { request, request2 } from "../hooks/api";
 
 class AnalyzerService {x
   /**
@@ -9,7 +9,7 @@ class AnalyzerService {x
 
   static async analyze(data) {
     try {
-      const response = await request(
+      const response = await request2(
         `analysis`,
         "POST",
         data,
