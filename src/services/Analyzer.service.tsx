@@ -10,7 +10,7 @@ class AnalyzerService {x
   static async analyze(data) {
     try {
       const response = await request(
-        `analysis/`,
+        `analysis`,
         "POST",
         data,
         true,
