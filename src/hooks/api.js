@@ -181,7 +181,7 @@ export const analyzerRequest = async (url, method, payload, token, text, form) =
         throw new Error(err);
       });
   } else {
-    return fetch(API_USER_URL2 + url, {
+    return fetch(ANALYZER_API_USER_URL + url, {
       method,
       headers: Object.assign(requestHeader),
       body: form === true ? payload : JSON.stringify(payload),
