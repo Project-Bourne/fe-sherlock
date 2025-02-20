@@ -17,6 +17,7 @@ import { Box } from "@mui/material";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
+import MarkdownRenderer from "../../components/ui/MarkdownRenderer";
 
 function Home() {
   const router = useRouter();
@@ -239,8 +240,11 @@ function Home() {
                   </h1>
                 )}
               </div>
-              <div className=" mx-5">
-                <DummyText />
+              <div className="mx-5">
+                <MarkdownRenderer 
+                  content={exportData} 
+                  className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                />
               </div>
             </div>
             :

@@ -13,6 +13,7 @@ import { Box } from "@mui/material";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
+import MarkdownRenderer from "../../components/ui/MarkdownRenderer";
 
 function homecontent() {
   const router = useRouter()
@@ -115,32 +116,46 @@ function homecontent() {
           </Box>
           <div className="w-full h-full">
             <CustomTabPanel value={value} index={0}>
-              <div>
-                <div className=" mx-10 pt-[1.5rem] flex items-center justify-between">
-                  <div></div>
-                  <ActionIcons docId={uuid} />
-                </div>
-
+              {analyzedText ?
                 <div>
-                  <div className="bg-white border my-[1rem] mx-10 rounded-[1rem]">
+                  <ActionIcons docId={uuid} />
+                  <div className="bg-white border mt-3 mx-10 rounded-[1rem]">
                     {hideMeta == true && (
-                      <div className="pl-5 py-5">
-                        <p className="text-md text-gray-500">Title:</p>
+                      <div className="pl-5 p-5">
+                        <p className="text-md text-gray-500">Title</p>
                         <h1 className="md:text-3xl text-[14px]">
                           {analyzedTitle}
                         </h1>
                       </div>
                     )}
-                    {hideMeta == false && ( //hide and show meta data
+                    {hideMeta == false && (
                       <h1 className="md:text-lg font-bold pl-5 pb-2">
                         {analyzedTitle}
                       </h1>
                     )}
                   </div>
-                  <div className="pb-10 mx-5">
-                    <DummyText />
+                  <div className="mx-5">
+                    <MarkdownRenderer 
+                      content={analyzedText} 
+                      className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                    />
                   </div>
-                </div></div>
+                </div>
+                :
+                <div className="flex items-center justify-center flex-col gap-4 h-[60vh]">
+                  <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
+                    <span> <Image
+                      src={require(`../../../public/icons/no_history.svg`)}
+                      alt="upload image"
+                      width={150}
+                      height={150}
+                      priority
+                    /></span>
+                    <h1 className="font-[700] text-2xl">No Analysed Assessment yet</h1>
+                    <span className='text-gray-400'>Copy and paste content or Upload a file to be Analyzed</span>
+                  </div>
+                </div>
+              }
             </CustomTabPanel>
           </div>
 
