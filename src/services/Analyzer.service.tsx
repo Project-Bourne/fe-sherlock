@@ -1,4 +1,4 @@
-import { request, request2 } from "../hooks/api";
+import { analyzerRequest } from "../hooks/api";
 
 class AnalyzerService {x
   /**
@@ -9,7 +9,7 @@ class AnalyzerService {x
 
   static async analyze(data) {
     try {
-      const response = await request2(
+      const response = await analyzerRequest(
         `analysis`,
         "POST",
         data,
@@ -33,7 +33,7 @@ class AnalyzerService {x
 
     static async analyzeFile(data) {
       try {
-        const response = await request(
+        const response = await analyzerRequest(
           `analysis/file`,
           "POST",
           data,
@@ -56,7 +56,7 @@ class AnalyzerService {x
 
   static async deleteAnalysis(id) {
     try {
-      await request(
+      await analyzerRequest(
         `delete/analysis/history/${id}`,
         "PUT",
         {},
@@ -78,7 +78,7 @@ class AnalyzerService {x
 
    static async bookMarkAnalysis(id) {
     try {
-      await request(
+      await analyzerRequest(
         `bookmark/analysis/${id}`,
         "PUT",
         {},
@@ -101,7 +101,7 @@ class AnalyzerService {x
 
   static async getAnalysisById(Id) {
     try {
-      const response = await request(
+      const response = await analyzerRequest(
         `analysis/${Id}`,
         "GET",
         true,
@@ -123,7 +123,7 @@ class AnalyzerService {x
 
   static async getAnalyzerHistory(page=1) {
     try {
-      const response = await request(
+      const response = await analyzerRequest(
         `/analysis/user?page=${page}`,
         "GET",
         {},
