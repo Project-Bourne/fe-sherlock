@@ -147,3 +147,63 @@ export async function request2(url, method, payload, token, text, form) {
       });
   }
 }
+
+
+export const analyzerRequest = async (url, method, payload, token, text, form) => {
+  if (form === true) {
+    requestHeader["Content-Type"] = "multipart/form-data";
+  } else {
+    requestHeader["Content-Type"] = "application/json";
+  }
+
+  if (method === "GET") {
+    return fetch(ANALYZER_API_USER_URL + url, {
+      method,
+      headers: Object.assign(requestHeader),
+    })
+      .then((res) => {
+        if (res.status === 403) {
+          // Clear the cookie
+          cookies.remove("deep-access");
+
+          // Redirect to the login page
+          // window.location.replace("http://192.81.213.226:30/auth/login");
+          window.location.replace(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}/auth/login`);
+          return "Access forbidden. Redirecting to login page.";
+        } else if (text === true) {
+          return res.text();
+        } else {
+          return res.json();
+        }
+      })
+      .catch((err) => {
+        console.error(`Request Error ${url}: `, err);
+        throw new Error(err);
+      });
+  } else {
+    return fetch(API_USER_URL2 + url, {
+      method,
+      headers: Object.assign(requestHeader),
+      body: form === true ? payload : JSON.stringify(payload),
+    })
+      .then((res) => {
+        if (res.status === 403) {
+          // Clear the cookie
+          cookies.remove("deep-access");
+
+          // Redirect to the login page
+          // window.location.replace("http://192.81.213.226:30/auth/login");
+          window.location.replace(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}/auth/login`);
+          return "Access forbidden. Redirecting to login page.";
+        } else if (text === true) {
+          return res.text();
+        } else {
+          return res.json();
+        }
+      })
+      .catch((err) => {
+        console.error(`Request Error ${url}: `, err);
+        throw new Error(err);
+      });
+  }
+};
