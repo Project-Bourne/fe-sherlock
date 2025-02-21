@@ -10,6 +10,7 @@ import { fetchData } from '../../../../hooks/FetchHistory'
 import AnalyzerService from '../../../../services/Analyzer.service';
 import { Tooltip } from '@mui/material';
 import NotificationService from '../../../../services/notification.service';
+import MarkdownRenderer from '../../../../components/ui/MarkdownRenderer';
 
 function BookmarkListItem({
     uuid,
@@ -70,7 +71,7 @@ function BookmarkListItem({
     };
 
     const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
-    const parsedDate = DateTime.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone
+    const parsedDate = DateTime.fromISO(time as string, { zone: userTimeZone }); // Convert UTC date to user's local time zone
     const formattedDate = parsedDate.toFormat('yyyy-MM-dd HH:mm'); // Format the parsed date
 
     return (
@@ -99,15 +100,24 @@ function BookmarkListItem({
                     />
                 </Tooltip>
                 {/* name */}
-                <p className="text-sirp-black-500 ml-2 md:w-[20rem] hover:text-gray-400">
+                {/* <p className="text-sirp-black-500 ml-2 md:w-[20rem] hover:text-gray-400">
                     {useTruncate(title, 20)}
-                </p>
+                </p> */}
+                <MarkdownRenderer
+                    content={`${title}`}
+                    className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                />
             </div>
 
             {/* message */}
             {showaction === 0 ? (
                 <div className="md:w-[33rem] hidden md:block">
-                    <p className="text-gray-400 border-l-2 pl-2 ">{useTruncate(translation, 20)}</p>
+                    {/* <p className="text-gray-400 border-l-2 pl-2 ">{useTruncate(translation, 20)}</p>
+                     */}
+                    <MarkdownRenderer
+                        content={`${translation}`}
+                        className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                    />
                 </div>
 
             ) : null}

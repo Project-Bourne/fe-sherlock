@@ -114,15 +114,20 @@ function Home() {
                 {hideMeta == true && (
                   <div className="pl-5 p-5">
                     <p className="text-md text-gray-500">Title</p>
-                    <h1 className="md:text-3xl text-[14px]">
+                    {/* <h1 className="md:text-3xl text-[14px]">
                       {analyzedTitle}
-                    </h1>
+                    </h1> */}
+                    <MarkdownRenderer
+                      content={analyzedTitle}
+                      className="text-[24px] font-bold uppercase text-justify pl-10 pb-1 leading-8 break-normal"
+                    />
                   </div>
                 )}
                 {hideMeta == false && (
-                  <h1 className="md:text-lg font-bold pl-5 pb-2">
-                    {analyzedTitle}
-                  </h1>
+                  <MarkdownRenderer
+                    content={analyzedTitle}
+                    className="text-[24px] font-bold uppercase text-justify pl-10 pb-1 leading-8 break-normal"
+                  />
                 )}
               </div>
               <div className=" mx-5">
@@ -132,13 +137,15 @@ function Home() {
             :
             <div className="flex items-center justify-center flex-col gap-4 h-[60vh]">
               <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
-                <span> <Image
-                  src={require(`../../../public/icons/no_history.svg`)}
-                  alt="upload image"
-                  width={150}
-                  height={150}
-                  priority
-                /></span>
+                <span> 
+                  <Image
+                    src={require(`../../../public/icons/no_history.svg`)}
+                    alt="upload image"
+                    width={150}
+                    height={150}
+                    priority
+                  />
+                </span>
                 <h1 className="font-[700] text-2xl">No Analyzed Content yet</h1>
                 <span className='text-gray-400'>Copy and paste content or Upload a file to be Analyzed</span>
               </div>
@@ -156,13 +163,15 @@ function Home() {
           </div> :
           <div className="flex items-center justify-center flex-col gap-4 h-[60vh]">
             <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
-              <span> <Image
-                src={require(`../../../public/icons/no_history.svg`)}
-                alt="upload image"
-                width={150}
-                height={150}
-                priority
-              /></span>
+              <span> 
+                <Image
+                  src={require(`../../../public/icons/no_history.svg`)}
+                  alt="upload image"
+                  width={150}
+                  height={150}
+                  priority
+                />
+              </span>
               <h1 className="font-[700] text-2xl">No Analysed Assessment yet</h1>
               <span className='text-gray-400'>Copy and paste content or Upload a file to be Analyzed</span>
             </div>

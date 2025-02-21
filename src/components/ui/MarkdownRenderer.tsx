@@ -41,7 +41,20 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
                     h3: ({ children }) => (
                         <h3 className="text-xl font-bold mb-4">{children}</h3>
                     ),
-                    
+                    h4: ({ children }) => (
+                        <h4 className="text-lg font-bold mb-4">{children}</h4>
+                    ),
+                    h5: ({ children }) => (
+                        <h5 className="text-base font-bold mb-4">{children}</h5>
+                    ),
+                    h6: ({ children }) => (
+                        <h6 className="text-sm font-bold mb-4">{children}</h6>
+                    ),
+                    table: ({ children }) => (
+                        <table className="w-full border-collapse border border-gray-300">
+                            {children}
+                        </table>
+                    ),
                 }}
             >
                 {content}

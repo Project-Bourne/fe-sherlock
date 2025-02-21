@@ -9,6 +9,7 @@ import { fetchData } from '../../../../hooks/FetchHistory'
 import AnalyzerService from '../../../../services/Analyzer.service';
 import { Tooltip } from '@mui/material';
 import NotificationService from '../../../../services/notification.service';
+import MarkdownRenderer from '../../../../components/ui/MarkdownRenderer';
 
 function ListItem({
     uuid,
@@ -100,13 +101,21 @@ function ListItem({
                     />
                 </Tooltip>
                 {/* name */}
-                <p className="text-sirp-black-500 ml-2 md:w-[20rem] hover:text-gray-500">
-                    {useTruncate(title, 20)}
-                </p>
+                {/* <p className="text-sirp-black-500 ml-2 md:w-[20rem] hover:text-gray-500"> */}
+                    {/* {useTruncate(title, 20)} */}
+                {/* </p> */}
+                <MarkdownRenderer
+                    content={`${title}`}
+                    className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                />
             </div>
             {showaction === 0 ? (
                 <div className="md:w-[23rem] hidden md:block">
-                    <p className="text-gray-400 border-l-2 pl-2 ">{useTruncate(translation, 20)}</p>
+                    {/* <p className="text-gray-400 border-l-2 pl-2 ">{useTruncate(translation, 20)}</p> */}
+                    <MarkdownRenderer
+                        content={`${translation}`}
+                        className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                    />
                 </div>
 
             ) : null}

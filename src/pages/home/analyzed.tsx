@@ -5,6 +5,7 @@ import Min_and_Max_icon from "./components/Min_Max_icon";
 import DummyText from "./components/dummyText";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux';
+import MarkdownRenderer from "../../components/ui/MarkdownRenderer";
 
 function homecontent() {
   const router = useRouter()
@@ -53,15 +54,23 @@ function homecontent() {
         {hideMeta == true && (
           <div className="pl-5 pb-5 mt-[5rem]">
             <p className="text-md text-gray-500">Title</p>
-            <h1 className="md:text-3xl text-[14px]">
+            {/* <h1 className="md:text-3xl text-[14px]">
               {analyzedTitle}
-            </h1>
+            </h1> */}
+            <MarkdownRenderer
+              content={analyzedTitle}
+              className="text-[24px] font-bold uppercase text-justify pl-10 pb-1 leading-8 break-normal"
+            />
           </div>
         )}
         {hideMeta == false && ( //hide and show meta data
-          <h1 className="md:text-lg font-bold pl-5 pb-2">
-            {analyzedTitle}
-          </h1>
+          <div className="pl-5 pb-5 mt-[5rem]">
+            <p className="text-md text-gray-500">Title</p>
+            <MarkdownRenderer
+              content={analyzedTitle}
+              className="text-[24px] font-bold uppercase text-justify pl-10 pb-1 leading-8 break-normal"
+            />
+          </div>
         )}
       </div>
       <div className="py-10 mx-5">
