@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SummaryPopUp from './summaryPopUp';
 import { useDispatch, useSelector } from 'react-redux';
+import MarkdownRenderer from '../../../components/ui/MarkdownRenderer';
 
 function DummyText() {
   const dispatch = useDispatch();
@@ -16,7 +17,11 @@ function DummyText() {
       const keyword = item.name;
       const colorCode = item.colorCode;
 
-      const coloredKeyword = `<span class='tags' style=" color: #4582C4; padding: 0px; text-decoration: underline; font-style: italic; margin: 1px; border-radius: 5px; cursor: pointer;">${keyword || ""}</span>`;
+      const coloredKeyword = `<span class='tags' style=" color: #4582C4; padding: 0px; text-decoration: underline; font-style: italic; margin: 1px; border-radius: 5px; cursor: pointer;">${`**[${keyword}](javascript:void(0))**`}</span>`;
+      // const finalKeyword = <MarkdownRenderer
+      //   content={coloredKeyword}
+      //   className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+      // />
 
       // Replace occurrences of the keyword with the colored keyword
       newText = newText.replace(new RegExp(keyword, 'g'), coloredKeyword);
@@ -27,11 +32,11 @@ function DummyText() {
 
   const handleKeywordClick = (keyword) => {
     const summary = analysisArray.find(item => item.name === keyword)?.summary || "No Summary Available";
-    const imageUrl = analysisArray.find(item => item.name === keyword)?.imageUrl || "https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg";
+    // const imageUrl = analysisArray.find(item => item.name === keyword)?.imageUrl || "https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg";
   
     setSelectedSummary(summary);
-    setImage(imageUrl); // Set the image URL
-    console.log(imageUrl); // Log imageUrl to the console to verify it's correct
+    // setImage(imageUrl); // Set the image URL
+    // console.log(imageUrl); // Log imageUrl to the console to verify it's correct
   };
 
   const handlePopUpClose = () => {
@@ -47,7 +52,7 @@ function DummyText() {
           handleKeywordClick(keyword);
         }
       }} />
-      <SummaryPopUp summary={selectedSummary} handleClose={handlePopUpClose} image={image} />
+      <SummaryPopUp summary={selectedSummary} handleClose={handlePopUpClose} />
     </div>
   );
 }

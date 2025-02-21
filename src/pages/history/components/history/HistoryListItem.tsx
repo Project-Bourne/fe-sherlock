@@ -72,7 +72,7 @@ function ListItem({
     };
 
     const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
-    const parsedDate = DateTime.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone
+    const parsedDate = DateTime.fromISO(`${time}`, { zone: userTimeZone }); // Convert UTC date to user's local time zone
     const formattedDate = parsedDate.toFormat('yyyy-MM-dd HH:mm'); // Format the parsed date
 
     return (

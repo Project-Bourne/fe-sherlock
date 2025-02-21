@@ -24,6 +24,8 @@ function homecontent() {
   const { id } = router.query
   const [value, setValue] = React.useState(0);
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
+  const { assessment } = useSelector((state: any) => state.analyze)
+
   const handleMax = () => {
     setHideMeta(true);
   };
@@ -31,7 +33,7 @@ function homecontent() {
     //hide and show meta data
     setHideMeta(false);
   };
-  const { assessment } = useSelector((state: any) => state.analyze)
+
   useEffect(() => {
     const fetchSingleAnalysis = async () => {
       if (id) {
@@ -39,9 +41,34 @@ function homecontent() {
           setShowLoader(true);
           const request = await AnalyzerService.getAnalysisById(id);
           if (request.status) {
-            dispatch(setTextAnalysis(request.data))
-            dispatch(setAssessment(request.data.assessment))
-            setUuid(request?.data?.uuid)
+            // Store the original texts
+            let newText = request.data.text;
+            let newTitle = request.data.title;
+            let newAssessment = request.data.assessment;
+            
+            // Apply analysis array modifications if available
+            if (request.data.analysisArray?.length > 0) {
+              request.data.analysisArray.forEach(item => {
+                const keyword = item.name;
+                const coloredKeyword = `*${keyword}*`;
+                // Replace occurrences of the keyword with the colored keyword in all texts
+                const regex = new RegExp(keyword, 'g');
+                newText = newText.replace(regex, coloredKeyword);
+                newTitle = newTitle.replace(regex, coloredKeyword);
+                if (newAssessment) {
+                  newAssessment = newAssessment.replace(regex, coloredKeyword);
+                }
+              });
+            }
+            
+            // Update the state with modified texts
+            dispatch(setTextAnalysis({
+              ...request.data,
+              text: newText,
+              title: newTitle,
+              assessment: newAssessment
+            }));
+            setUuid(request?.data?.uuid);
             setShowLoader(false);
           } else {
             setShowLoader(false);
@@ -54,13 +81,11 @@ function homecontent() {
         } catch (error) {
           setShowLoader(false);
         }
-      } else {
-        return
       }
+    };
+    fetchSingleAnalysis();
+  }, [id]);
 
-    }
-    fetchSingleAnalysis()
-  }, [id])
   function a11yProps(index: number) {
     return {
       id: `simple-tab-${index}`,
@@ -88,7 +113,7 @@ function homecontent() {
       >
         {value === index && (
           <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
+            {children}
           </Box>
         )}
       </div>
@@ -123,18 +148,18 @@ function homecontent() {
                     {hideMeta == true && (
                       <div className="pl-5 p-5">
                         <p className="text-md text-gray-500">Title</p>
-                        <h1 className="md:text-3xl text-[14px]">
-                          {analyzedTitle}
-                        </h1>
+                        <MarkdownRenderer
+                          content={analyzedTitle}
+                          className="text-[24px] font-bold uppercase text-justify pl-10 pb-1 leading-8 break-normal"
+                          analysisArray={analysisArray}
+                        />
                       </div>
                     )}
                     {hideMeta == false && (
-                      // <h1 className="md:text-lg font-bold pl-5 pb-2">
-                      //   {analyzedTitle}
-                      // </h1>
                       <MarkdownRenderer
                         content={analyzedTitle}
                         className="text-[24px] font-bold uppercase text-justify pl-10 pb-1 leading-8 break-normal"
+                        analysisArray={analysisArray}
                       />
                     )}
                   </div>
@@ -142,6 +167,7 @@ function homecontent() {
                     <MarkdownRenderer 
                       content={analyzedText} 
                       className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                      analysisArray={analysisArray}
                     />
                   </div>
                 </div>
@@ -166,12 +192,10 @@ function homecontent() {
           <CustomTabPanel value={value} index={1}>
             {assessment?.length > 0 ?
               <div className="my-4 bg-white border border-r-[10px] rounded-lg shadow-md border-sirp-primaryLess2 p-7">
-                {/* {assessment?.split('\n').map((paragraph, i) => (
-                  <p key={i} className="text-[14px] text-justify   pl-10 pb-1 leading-8 break-normal "> {paragraph} </p>
-                ))} */}
                 <MarkdownRenderer
                   content={assessment}
                   className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                  analysisArray={analysisArray}
                 />
               </div> :
               <div className="flex items-center justify-center flex-col gap-4 h-[60vh]">

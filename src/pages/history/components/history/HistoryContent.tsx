@@ -39,14 +39,14 @@ function HistoryContent() {
                 <>
                     {history?.summary?.map(item => {
                         return (
-                            <div key={item.translationUuid} className='"bg-sirp-listBg border h-[100%] w-[100%] md:mx-2 mx-2 my-1 rounded-[1rem]'>
+                            <div key={item?.uuid || item?.analysisUuid} className="bg-sirp-listBg border h-[100%] w-[100%] md:mx-2 mx-2 my-1 rounded-[1rem]">
                                 <ListItem
                                     uuid={item?.analysisUuid}
                                     translateid={item?.uuid}
-                                    title={item?.analysis?.title} // Pass the title
-                                    translation={item?.analysis?.title} // Pass the summary
+                                    title={item?.analysis?.title}
+                                    translation={item?.analysis?.title}
                                     time={item?.createdAt}
-                                    isArchived={item?.bookmark} // Pass the isArchived value
+                                    isArchived={item?.bookmark}
                                     buttonType="action"
                                     actionButtons={<DeleteIcon doc={item?.title} />}
                                 />

@@ -83,7 +83,33 @@ const FileUpload = ({ exportData }) => {
       const request = await AnalyzerService.analyze(data);
       console.log(request)
       if (request.status) {
-        dispatch(setTextAnalysis(request.data))
+
+        let newText = request.data.text;
+        let newTitle = request.data.title;
+        let newAssessment = request.data.assessment;
+            
+        // Apply analysis array modifications if available
+        if (request.data.analysisArray?.length > 0) {
+          request.data.analysisArray.forEach(item => {
+            const keyword = item.name;
+            const coloredKeyword = `*${keyword}*`;
+            // Replace occurrences of the keyword with the colored keyword in all texts
+            const regex = new RegExp(keyword, 'g');
+            newText = newText.replace(regex, coloredKeyword);
+            newTitle = newTitle.replace(regex, coloredKeyword);
+            if (newAssessment) {
+              newAssessment = newAssessment.replace(regex, coloredKeyword);
+            }
+          });
+        }
+            
+        // Update the state with modified texts
+        dispatch(setTextAnalysis({
+          ...request.data,
+          text: newText,
+          title: newTitle,
+          assessment: newAssessment
+        }));
         dispatch(setAssessment(request.data.assessment))
         setShowLoader(false);
         setFormData('')

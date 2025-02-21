@@ -2,6 +2,12 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import MarkdownRenderer from '../../../components/ui/MarkdownRenderer';
+
+interface SummaryPopUpProps {
+  summary: string;
+  handleClose: () => void;
+}
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -16,7 +22,7 @@ const style = {
   p: 4,
 };
 
-const SummaryPopUp = ({ summary, handleClose, image }) => {
+const SummaryPopUp: React.FC<SummaryPopUpProps> = ({ summary, handleClose }) => {
   return (
     <Modal
       open={!!summary} // Open modal if summary is provided
@@ -28,9 +34,11 @@ const SummaryPopUp = ({ summary, handleClose, image }) => {
         <Typography id="modal-modal-title" variant="h6" component="h2">
           Summary
         </Typography>
-        <img src={image} className='w-full h-[100px] rounded-full' style={{objectFit: "contain"}} />
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {summary}
+          <MarkdownRenderer
+            content={summary}
+            className="text-[16px] text-justify pb-1 leading-8 break-normal"
+          />
         </Typography>
       </Box>
     </Modal>

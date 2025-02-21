@@ -21,7 +21,7 @@ function Home() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true)
   const [exportData, setExportData] = useState("");
-  const { analyzedText, analyzedTitle, analyzedUuid } = useSelector((state: any) => state.analyze);
+  const { analyzedText, analyzedTitle, analysisArray, analyzedUuid } = useSelector((state: any) => state.analyze);
   const [value, setValue] = React.useState(0);
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
   const handleMax = () => {
@@ -89,7 +89,7 @@ function Home() {
       >
         {value === index && (
           <Box sx={{ p: 3 }}>
-            <Typography>{children}</Typography>
+            {children}
           </Box>
         )}
       </div>
@@ -114,12 +114,10 @@ function Home() {
                 {hideMeta == true && (
                   <div className="pl-5 p-5">
                     <p className="text-md text-gray-500">Title</p>
-                    {/* <h1 className="md:text-3xl text-[14px]">
-                      {analyzedTitle}
-                    </h1> */}
                     <MarkdownRenderer
                       content={analyzedTitle}
                       className="text-[24px] font-bold uppercase text-justify pl-10 pb-1 leading-8 break-normal"
+                      analysisArray={analysisArray}
                     />
                   </div>
                 )}
@@ -127,11 +125,16 @@ function Home() {
                   <MarkdownRenderer
                     content={analyzedTitle}
                     className="text-[24px] font-bold uppercase text-justify pl-10 pb-1 leading-8 break-normal"
+                    analysisArray={analysisArray}
                   />
                 )}
               </div>
-              <div className=" mx-5">
-                <DummyText />
+              <div className="mx-5">
+                <MarkdownRenderer 
+                  content={analyzedText} 
+                  className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                  analysisArray={analysisArray}
+                />
               </div>
             </div>
             :
@@ -159,6 +162,7 @@ function Home() {
             <MarkdownRenderer 
               content={assessment} 
               className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+              analysisArray={analysisArray}
             />
           </div> :
           <div className="flex items-center justify-center flex-col gap-4 h-[60vh]">

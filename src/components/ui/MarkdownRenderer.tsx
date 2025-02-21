@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import SummaryPopUp from '../../pages/home/components/summaryPopUp';
+
+interface AnalysisItem {
+    name: string;
+    summary?: string;
+}
+
 /**
  * Props interface for the MarkdownRenderer component
  * @interface MarkdownRendererProps
  * @property {string} content - The markdown content to render
  * @property {string} [className] - Optional CSS class name for styling
+ * @property {AnalysisItem[]} [analysisArray] - Array of analysis items with summaries
  */
 interface MarkdownRendererProps {
     content: string;
     className?: string;
+    analysisArray?: AnalysisItem[];
 }
 
 /**
@@ -18,7 +27,26 @@ interface MarkdownRendererProps {
  * @param {MarkdownRendererProps} props - The component props
  * @returns {JSX.Element} Rendered markdown content
  */
-const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className = '' }) => {
+const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className = '', analysisArray = [] }) => {
+    const [summary, setSummary] = useState('');
+    const [image, setImage] = useState('');
+
+    const handleClose = () => {
+        setSummary('');
+        setImage('');
+    };
+
+    const handleSpanClick = (text: string) => {
+        // Find the matching analysis item and use its summary
+        const analysisItem = analysisArray.find(item => item.name === text);
+        if (analysisItem?.summary) {
+            setSummary(analysisItem.summary);
+        } else {
+            setSummary(text); // Fallback to the text itself if no summary found
+        }
+        setImage('/icons/no_history.svg');
+    };
+
     return (
         <div className={className}>
             <ReactMarkdown
@@ -55,10 +83,27 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, className 
                             {children}
                         </table>
                     ),
+                    em: ({ children }) => {
+                        const text = children?.toString() || '';
+                        const analysisItem = analysisArray.find(item => item.name === text);
+                        return (
+                            <span 
+                                className={`tags cursor-pointer ${analysisItem ? 'text-sirp-primary underline font-bold hover:text-cyan-700' : 'text-gray-500'}`}
+                                onClick={() => handleSpanClick(text)}
+                                title={analysisItem ? "Click to view summary" : "No summary available"}
+                            >
+                                {children}
+                            </span>
+                        );
+                    }
                 }}
             >
                 {content}
             </ReactMarkdown>
+            <SummaryPopUp 
+                summary={summary}
+                handleClose={handleClose}
+            />
         </div>
     );
 };
