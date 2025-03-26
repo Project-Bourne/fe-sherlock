@@ -248,7 +248,15 @@ function Home() {
                 <MarkdownRenderer 
                   content={exportData} 
                   className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
-                  analysisArray={analysisArray}
+                  analysisArray={
+                    analysisArray.filter(item => 
+                      item.name.toLowerCase() !== 'comment' && 
+                      item.name.toLowerCase() !== 'summary' && 
+                      item.name.toLowerCase() !== 'title' && 
+                      item.name.toLowerCase() !== 'author' && 
+                      item.name.toLowerCase() !== 'date' && 
+                      item.name.toLowerCase() !== 'source'
+                    )}
                 />
               </div>
             </div>
