@@ -23,7 +23,7 @@ function Home() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const { analyzedText, analyzedTitle, analyzedUuid } = useSelector(
+  const { analyzedText, analyzedTitle, analyzedUuid, analysisArray } = useSelector(
     (state: any) => state?.analyze
   );
   const [value, setValue] = React.useState(0);
@@ -90,32 +90,28 @@ function Home() {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           const data = await response.json();
-          switch (routeName) {
-            case "translator":
-              setExportData(data?.data?.textTranslation);
-              break;
-            case "factcheck":
-              setExportData(data?.data?.confidence?.content5wh);
-              break;
-            case "irp":
-              setExportData(data?.data?.confidence?.content5wh);
-              break;
-            case "summarizer":
-              setExportData(data?.data?.summaryArray[0].summary);
-              break;
-            case "deepchat":
-            case 'interrogator':
-              setExportData(data?.data?.answer);
-              break;
-            case "collab":
-              const  collabData: string[] = data?.data?.data?.ops.map((el) => {
-                return el.insert
-              })
-              setExportData(collabData.join(' '))
-              break;
-            default:
-              break;
+          let transformedData = '';
+          
+          // Handle collab case separately since it has a different data structure
+          if (routeName === 'collab') {
+            const collabData: string[] = data?.data?.data?.ops.map((el) => el.insert);
+            transformedData = collabData.join(' ');
+          } else {
+            transformedData = data?.data?.textTranslation || data?.data?.confidence?.content5wh || data?.data?.summaryArray?.[0]?.summary || data?.data?.answer || '';
           }
+          
+          // Transform the data with emphasis markers if analysisArray exists
+          if (analysisArray?.length > 0) {
+            analysisArray.forEach(item => {
+              const keyword = item.name;
+              const coloredKeyword = `*${keyword}*`;
+              // Replace occurrences of the keyword with the colored keyword
+              const regex = new RegExp(keyword, 'g');
+              transformedData = transformedData.replace(regex, coloredKeyword);
+            });
+          }
+          
+          setExportData(transformedData);
           setLoading(false);
         } catch (error: any) {
           console.error("Error:", error);
@@ -131,7 +127,7 @@ function Home() {
     };
 
     fetchData();
-  }, [incoming]);
+  }, [incoming, analysisArray]);
 
   useEffect(() => {
     dispatch(
@@ -252,6 +248,7 @@ function Home() {
                 <MarkdownRenderer 
                   content={exportData} 
                   className="text-[14px] text-justify pl-10 pb-1 leading-8 break-normal"
+                  analysisArray={analysisArray}
                 />
               </div>
             </div>
