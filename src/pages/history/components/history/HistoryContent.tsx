@@ -1,34 +1,101 @@
 import React, { useEffect, useState } from 'react';
-import DeleteIcon from './deleteIcon';
-import ListItem from './HistoryListItem';
-import NoHistory from './NoHistory';
 import { useDispatch, useSelector } from 'react-redux';
-import { setHistory, updatePagination } from '../../../../redux/reducer/analyzerSlice'
+import { setHistory, updatePagination } from '../../../../redux/reducer/analyzerSlice';
 import AnalyzerService from '../../../../services/Analyzer.service';
-import { CircularProgress, Pagination } from '@mui/material';
+import NotificationService from '../../../../services/notification.service';
+import Table from '../../../../components/ui/Table';
 
+/**
+ * HistoryContent component displays the user's analysis history using a table view
+ * with pagination and actions like bookmark and delete
+ * @returns {JSX.Element} The rendered HistoryContent component
+ */
 function HistoryContent() {
-    const { history } = useSelector((state: any) => state?.analyze)
-    const itemsPerPage = history?.itemsPerPage || 10;
-    const [loading, setLoading] = useState(false)
-    const [currentPage, setCurrentPage] = useState(history?.currentPage || 1);
-    const dispatch = useDispatch()
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const handlePageChange = async (event, page) => {
-        setLoading(true)
+    const { history } = useSelector((state: any) => state?.analyze);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0); // Start from 0 for MUI pagination
+    const dispatch = useDispatch();
+
+    // Handle page change in pagination
+    const handlePageChange = async (page: number) => {
+        setLoading(true);
         try {
             setCurrentPage(page);
             dispatch(updatePagination({ currentPage: page }));
-            const data = await AnalyzerService.getAnalyzerHistory(page)
-            console.log(data)
-            dispatch(setHistory(data?.data))
+            // Add 1 to page since API uses 1-based indexing but MUI uses 0-based
+            const data = await AnalyzerService.getAnalyzerHistory(page + 1);
+            dispatch(setHistory(data?.data));
         } catch (error) {
-            console.log(error)
+            console.error('Error fetching history:', error);
+            NotificationService.error({
+                message: 'Failed to fetch history',
+                addedText: <p>Please try again later</p>,
+            });
         }
-        setLoading(false)
+        setLoading(false);
     };
 
+    // Handle bookmark action
+    const handleBookmark = async (uuid: string) => {
+        try {
+            await AnalyzerService.bookMarkAnalysis(uuid);
+            const data = await AnalyzerService.getAnalyzerHistory(currentPage + 1);
+            dispatch(setHistory(data?.data));
+            NotificationService.success({
+                message: 'Operation successful'
+            });
+        } catch (error) {
+            NotificationService.error({
+                message: 'Operation unsuccessful'
+            });
+            console.error(error);
+        }
+    };
+
+    // Handle delete action
+    const handleDelete = async (uuid: string) => {
+        try {
+            await AnalyzerService.deleteAnalysis(uuid);
+            const data = await AnalyzerService.getAnalyzerHistory(currentPage + 1);
+            dispatch(setHistory(data?.data));
+            NotificationService.success({
+                message: 'Operation Successful'
+            });
+        } catch (error) {
+            NotificationService.error({
+                message: 'Operation Unsuccessful'
+            });
+            console.error(error);
+        }
+    };
+
+    // Transform history data for Table component
+    const tableData = history?.summary?.map(item => ({
+        uuid: item?.uuid,
+        title: item?.analysis?.title || 'No title',
+        content5wh: item?.analysis?.assessment || '',
+        createdAt: item?.createdAt,
+        isBookmarked: item?.bookmark,
+        onBookmark: handleBookmark,
+        onDelete: handleDelete
+    })) || [];
+
+    return (
+        <div className="px-4">
+            <Table
+                data={tableData}
+                totalItems={history?.totalItems || 0}
+                page={currentPage}
+                loading={loading}
+                onPageChange={handlePageChange}
+                isBookmarkView={false}
+            />
+        </div>
+    );
+}
+
+// Comment out existing implementation for reference
+/*
     return (
         <div>
             {loading &&
@@ -70,6 +137,6 @@ function HistoryContent() {
             )}
         </div>
     );
-}
+*/
 
 export default HistoryContent;

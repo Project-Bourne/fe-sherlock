@@ -78,7 +78,7 @@ class AnalyzerService {x
 
    static async bookMarkAnalysis(id) {
     try {
-      await analyzerRequest(
+      const response = await analyzerRequest(
         `bookmark/analysis/${id}`,
         "PUT",
         {},
@@ -86,6 +86,8 @@ class AnalyzerService {x
         false,
         false,
       );
+      console.log('Bookmark Response: ', response)
+      return response;
     } catch (error) {
       throw error;
     }
